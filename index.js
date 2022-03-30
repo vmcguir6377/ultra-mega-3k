@@ -45,30 +45,36 @@ cap.methods = {
             cap.employeeGrid =
                 $('<div>')
                     .appendTo(cap.container)
+                  
                     .dxDataGrid(
                         {
-                            columnHidingEnabled: false,
-                            editing: {
-                                editRowKey: 'inx',
-                                allowAdding: true,
-                                allowDeleting: true,
-                                allowUpdating: true,
-
-                                mode: 'popup',
-                                useIcons: true
-                            },
+                           
+                                columnAutoWidth:true,
+                                columnHidingEnabled:true,
+                                editing: {
+                                    editRowKey: 'inx',
+                                    allowDeleting: true,
+                                    allowAdding: true,
+                                    allowUpdating: true,
+            
+                                    mode: 'popup',
+                                    useIcons: true,
+                                },
+                                    
                             allowColumnResizing: true,
+                            
                             showBorders: true,
                             columnResizingMode: 'nextColumn',
                             columnMinWidth: 50,
                             columnAutoWidth: true,
+                            columnHidingEnabled: true,
                             showBorders: true,
                             /*keyExpr: 'inx',*///this was throwing an error
                             scrolling: {
                                 mode: 'virtual',
                             },
                             paging: {
-                                enabled: true,
+                                enabled: false,
                             },
                             dataSource: new DevExpress.data.CustomStore({
                                 load: (opts) => {
@@ -77,13 +83,6 @@ cap.methods = {
                                 update: (data, info) => {
                                     debugger
                                     return cap.methods.post("allEmployees", Object.assign({}, data, info))
-                                },
-                                remove: (data, info) => {
-                                    debugger
-                                    //check if this is effective: the console log does appear but only after clicking edit icon still :/
-                                    console.log("remove", "test")
-                                    return cap.methods.delete("allEmployees", data);
-
                                 },
                                 remove:(data, info)=>{
                                     debugger
@@ -99,7 +98,7 @@ cap.methods = {
 
 
                             columns: [
-
+                               
                                 {
                                     type: "buttons",
                                     buttons: ["edit","delete"]
@@ -108,7 +107,7 @@ cap.methods = {
                                     dataField: "inx",
                                     visible: false,
                                     formItem: {
-                                        visible: false,
+                                        visible: true,
                                     }
                                 },
                                 {
@@ -189,8 +188,10 @@ cap.methods = {
                                 {
                                     dataField: "emailGroup"
                                 },
+                                
                             ]
                         }
+                    
                     ).dxDataGrid('instance')
             await cap.methods.showContainer();
             return;
@@ -198,6 +199,8 @@ cap.methods = {
         catch (err) {
             cap.events.onError(err)
         }
+        
+      
     },
 
     //Clear the container so we can do something else
@@ -278,6 +281,7 @@ cap.methods = {
             } catch (err) {
                 cap.events.onError(err);
             }
+            
         })
     },
     //Get something from the api
@@ -321,3 +325,4 @@ $(() => {
         cap.events.onError(err)
     }
 })
+
