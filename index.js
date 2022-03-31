@@ -1,3 +1,4 @@
+//Authentication form
 var username = $("input#username").val();$(".hidden").attr("placeholder", "UserName");;
     var password = $("input#password").val();$(".hidden").attr("placeholder", "Password");
     
@@ -18,8 +19,6 @@ var username = $("input#username").val();$(".hidden").attr("placeholder", "UserN
         alert('You are now logged in.');
         }
     });
-
-
 
 /*References-
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
@@ -91,7 +90,7 @@ cap.methods = {
         columnMinWidth: 50,
         columnAutoWidth: true,
         showBorders: true,
-        keyExpr:'inx',
+        /*keyExpr:'inx',*/
         scrolling: {
             mode: 'virtual',
           },
