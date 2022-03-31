@@ -1,4 +1,23 @@
-
+var username = $("input#username").val();$(".hidden").attr("placeholder", "UserName");;
+    var password = $("input#password").val();$(".hidden").attr("placeholder", "Password");
+    
+    
+    function make_base_auth(user, password) {
+      var tok = user + ':' + password;
+      var hash = Base64.encode(tok);
+      return "Basic " + hash;
+    }
+    $.ajax
+      ({
+        type: "GET",
+        url: "http://10.0.0.16:8814/api/",
+        dataType: 'json',
+        async: false,
+        data: '{"mdsUsername": "' + username + '", "mdsPassword" : "' + password + '"}',
+        success: function (){
+        alert('You are now logged in.');
+        }
+    });
 
 
 
@@ -6,13 +25,12 @@
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
 
 */
-import { createApp } from "vue";
-import router from "./router";
+/*import { createApp } from "vue";
+import route from "./route";
 import app from "./app";
 const app = createApp(App);
 app.use(router);
-app.config.globalProperties.$appInfo = appInfo;
-app.mount("#app");
+app.mount("#app");*/
 //create variables in our namespace. always do this so you know what you are using later
 _APIURL ="http://10.0.0.16:8814/api/";
 cap = {
