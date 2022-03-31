@@ -1,9 +1,18 @@
-/*
-References-
+
+
+
+
+/*References-
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
 
 */
-
+import { createApp } from "vue";
+import router from "./router";
+import app from "./app";
+const app = createApp(App);
+app.use(router);
+app.config.globalProperties.$appInfo = appInfo;
+app.mount("#app");
 //create variables in our namespace. always do this so you know what you are using later
 _APIURL ="http://10.0.0.16:8814/api/";
 cap = {

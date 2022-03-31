@@ -1,0 +1,23 @@
+{
+  "name": "ultra-mega-3k",
+  "version": "1.0.0",
+  "description": "Objective: To develop a centralized web application, accessible by all departments, that will streamline the addition and maintenance of the flow of employee data, eliminate data inaccuracy, and reduce redundancy.  The application will contain the following 3 page links:\r Employee setup - for HR to initially set up new employee profiles. This data will sync to MDS and Office 365, and will be updated when either of those systems receives updates.\r Update wizard - to be used by IT, Dispatch, and Supervisors to update only the specific fields that each would need to change.\r Read only - for all others to view pertinent information with no edit permissions.\r And will require the following:\r Ability to integrate with Office 365 and MDS\r Ability to have password authentication for all users to access the proper page per their permission level\r Ability to present a read only interface for users who need access to view but not edit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vmcguir6377/ultra-mega-3k.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vmcguir6377/ultra-mega-3k/issues"
+  },
+  "homepage": "https://github.com/vmcguir6377/ultra-mega-3k#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "vue": "^3.2.31"
+  }
+}
