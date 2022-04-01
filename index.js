@@ -1,3 +1,30 @@
+$(document).ready(function() {
+    $("#register").click(function() {
+    var name = $("#name").val();
+    var email = $("#email").val();
+    var password = $("#password").val();
+    var cpassword = $("#cpassword").val();
+    if (name == '' || email == '' || password == '' || cpassword == '') {
+    alert("Please fill in all fields.");
+    } else if ((password.length) < 8) {
+    alert("Password must be atleast 8 character in length.");
+    } else if (!(password).match(cpassword)) {
+    alert("Your passwords don't match. Try again.");
+    } else {
+    $.post("http://10.0.0.16:8814", {
+    name1: name,
+    email1: email,
+    password1: password
+    }, function(data) {
+    if (data == 'You have Successfully Registered.') {
+    $("form")[0].reset();
+    }
+    alert(data);
+    });
+    }
+    });
+    });
+
 //Authentication form
 var username = $("input#username").val();$(".hidden").attr("placeholder", "UserName");;
     var password = $("input#password").val();$(".hidden").attr("placeholder", "Password");
@@ -22,14 +49,8 @@ var username = $("input#username").val();$(".hidden").attr("placeholder", "UserN
 
 /*References-
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
-
 */
-/*import { createApp } from "vue";
-import route from "./route";
-import app from "./app";
-const app = createApp(App);
-app.use(router);
-app.mount("#app");*/
+
 //create variables in our namespace. always do this so you know what you are using later
 _APIURL ="http://10.0.0.16:8814/api/";
 cap = {
