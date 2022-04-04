@@ -1,149 +1,7 @@
-var myInput = document.getElementById(psw);
-
-var letter = document.getElementById(letter);
-
-var capital = document.getElementById(capital);
-
-var number = document.getElementById(number);
-
-var length = document.getElementById(length)
-
-myInput.onfocus = function() {
-
-  document.getElementById(message).style.display = block;
-
-}
-
-myInput.onblur = function() {
-
-  document.getElementById(message).style.display = none;
-
-}
-
-myInput.onkeyup = function() {
-
-    var lowerCaseLetters = /[a-z]/g;
-
-  if(myInput.value.match(lowerCaseLetters)) {
-
-    letter.classList.remove(invalid);
-
-    letter.classList.add(valid);
-
-  } else {
-
-    letter.classList.remove(valid);
-
-    letter.classList.add(invalid);
-
-}
-
-var upperCaseLetters = /[A-Z]/g;
-
-  if(myInput.value.match(upperCaseLetters)) {
-
-    capital.classList.remove(invalid);
-
-    capital.classList.add(valid);
-
-  } else {
-
-    capital.classList.remove(valid);
-
-    capital.classList.add(invalid);
-
-  }
-
-  var numbers = /[0-9]/g;
-
-  if(myInput.value.match(numbers)) {
-
-    number.classList.remove(invalid);
-
-    number.classList.add(valid);
-
-  } else {
-
-    number.classList.remove(valid);
-
-    number.classList.add(invalid);
-
-  }
-
-  if(myInput.value.length >= 8) {
-
-    length.classList.remove(invalid);
-
-    length.classList.add(valid);
-
-  } else {
-
-    length.classList.remove(valid);
-
-    length.classList.add(invalid);
-
-  }
-
-}
-
-
-$(window).on('load', function() {
-    $("#cover").hide();
- });
-
-
-//Registration form
-$(document).ready(function() {
-    $("#signup").click(function() {
-    var name = $("#name").val();
-    var email = $("#email").val();
-    var password = $("#password").val();
-    var cpassword = $("#cpassword").val();
-    if (name == '' || email == '' || password == '' || cpassword == '') {
-    alert("Please fill in all fields.");
-    } else if ((password.length) < 8) {
-    alert("Password must be atleast 8 character in length.");
-    } else if (!(password).match(cpassword)) {
-    alert("Your passwords don't match. Try again.");
-    } else {
-    $.post("http://10.0.0.16:8814/signup", {
-    name1: name,
-    email1: email,
-    password1: password
-    }, function(data) {
-    if (data == 'You have Successfully Registered.') {
-    $("form")[0].reset();
-    }
-    alert(data);
-    });
-    }
-    });
-    });
-
-//Authentication form
-var username = $("input#username").val();$(".hidden").attr("placeholder", "UserName");;
-    var password = $("input#password").val();$(".hidden").attr("placeholder", "Password");
-    
-    
-    function make_base_auth(user, password) {
-      var register = user + ':' + password;
-      var hash = Base64.encode(register);
-      return "Basic " + hash;
-    }
-    $.ajax
-      ({
-        type: "GET",
-        url: "http://10.0.0.16:8814/api/",
-        dataType: 'json',
-        async: false,
-        data: '{"userName": "' + username + '", "passWord" : "' + password + '"}',
-        success: function (){
-        alert('You are now logged in.');
-        }
-    });
-
-/*References-
+/*
+References-
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
+
 */
 
 //create variables in our namespace. always do this so you know what you are using later
@@ -191,7 +49,7 @@ cap.methods = {
         {
             columnHidingEnabled: true,
             editing:{
-            /*editRowKey:'',*/
+            /*editRowKey:'inx',*/
             allowAdding:true,
             allowUpdating: true,
             allowDeleting: true,
@@ -223,7 +81,7 @@ cap.methods = {
                 },
                 remove:(data, info)=>{
                     debugger
-                    return cap.methods.delete(`allEmployees`,data);
+                    return cap.methods.delete(`allEmployees`,data)
                 },
                 insert:(data, info)=>{
                     debugger

@@ -10,8 +10,8 @@
 
 <!-- Theme stylesheet -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/devextreme/21.2.6/css/dx.material.orange.dark.compact.css" rel="stylesheet">
-<link rel="stylesheet" href="style.css" />
-<script scr="index.js"></script>
+
+
 <!--js files referenced in head section-->
 
 <!-- DevExtreme library -->
@@ -21,7 +21,7 @@
 <!--load app-->
 <script src="index.js" type="text/javascript"></script>
 <title>Registration Form</title>
-<meta name="robots" content="noindex, nofollow">
+
 
 
 <!-- Include JS File Here -->
@@ -30,43 +30,7 @@
 </head>
 
 
-  <div id=“message”>
-
-    <h3>Password must contain the following:</h3>
-
-    <p id=“letter” class=“invalid”>A <b>lowercase</b> letter</p>
-
-    <p id=“capital” class=“invalid”>A <b>capital (uppercase)</b> letter</p>
-
-    <p id=“number” class=“invalid”>A <b>number</b></p>
-
-    <p id=“length” class=“invalid”>Minimum <b>8 characters</b></p>
-
-  </div>
-<body> 
-    <div id="cover"></div>
-  <div class="container">
-    <div class="main">
-    <form class="form" method="post" action="signup">
-    <h2>Ultra Mega 3K Registration Form</h2>
-    
-    <label>Name :</label>
-    <input type="text" name="dname" id="name">
-    <label>Email :</label>
-    <input type="text" name="demail" id="email">
-    <label>Password :</label>
-    <input type="password" name="psw" id=“psw” name=“psw” pattern=“(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}” title=“Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters” required>
-    <label>Confirm Password :</label>
-    <input type="password" name="cpassword" id="cpassword">
-    <input type="button" name="register" id="register" value="Register">
-    </form><h2>Or<br><br> Login</h2>
-    
-    <form name="authentication" id="login" method="post">
-        <input type="text" name="username" id="username" class="text" placeholder="Username"/>
-        <input type="password" name="password" id="password" class="text" placeholder="Password"/>
-        <input type="submit" name="sub" value="Submit" class="page"/>
-  </form><br><br>
-    </div>
+ 
     
     <!-- dont put anything in here, the body will be generated with the index.js file. -->
 </body>
