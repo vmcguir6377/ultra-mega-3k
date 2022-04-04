@@ -1,5 +1,100 @@
+var myInput = document.getElementById(psw);
+
+var letter = document.getElementById(letter);
+
+var capital = document.getElementById(capital);
+
+var number = document.getElementById(number);
+
+var length = document.getElementById(length)
+
+myInput.onfocus = function() {
+
+  document.getElementById(message).style.display = block;
+
+}
+
+myInput.onblur = function() {
+
+  document.getElementById(message).style.display = none;
+
+}
+
+myInput.onkeyup = function() {
+
+    var lowerCaseLetters = /[a-z]/g;
+
+  if(myInput.value.match(lowerCaseLetters)) {
+
+    letter.classList.remove(invalid);
+
+    letter.classList.add(valid);
+
+  } else {
+
+    letter.classList.remove(valid);
+
+    letter.classList.add(invalid);
+
+}
+
+var upperCaseLetters = /[A-Z]/g;
+
+  if(myInput.value.match(upperCaseLetters)) {
+
+    capital.classList.remove(invalid);
+
+    capital.classList.add(valid);
+
+  } else {
+
+    capital.classList.remove(valid);
+
+    capital.classList.add(invalid);
+
+  }
+
+  var numbers = /[0-9]/g;
+
+  if(myInput.value.match(numbers)) {
+
+    number.classList.remove(invalid);
+
+    number.classList.add(valid);
+
+  } else {
+
+    number.classList.remove(valid);
+
+    number.classList.add(invalid);
+
+  }
+
+  if(myInput.value.length >= 8) {
+
+    length.classList.remove(invalid);
+
+    length.classList.add(valid);
+
+  } else {
+
+    length.classList.remove(valid);
+
+    length.classList.add(invalid);
+
+  }
+
+}
+
+
+$(window).on('load', function() {
+    $("#cover").hide();
+ });
+
+
+//Registration form
 $(document).ready(function() {
-    $("#register").click(function() {
+    $("#signup").click(function() {
     var name = $("#name").val();
     var email = $("#email").val();
     var password = $("#password").val();
@@ -11,7 +106,7 @@ $(document).ready(function() {
     } else if (!(password).match(cpassword)) {
     alert("Your passwords don't match. Try again.");
     } else {
-    $.post("http://10.0.0.16:8814", {
+    $.post("http://10.0.0.16:8814/signup", {
     name1: name,
     email1: email,
     password1: password
@@ -31,8 +126,8 @@ var username = $("input#username").val();$(".hidden").attr("placeholder", "UserN
     
     
     function make_base_auth(user, password) {
-      var tok = user + ':' + password;
-      var hash = Base64.encode(tok);
+      var register = user + ':' + password;
+      var hash = Base64.encode(register);
       return "Basic " + hash;
     }
     $.ajax
@@ -41,7 +136,7 @@ var username = $("input#username").val();$(".hidden").attr("placeholder", "UserN
         url: "http://10.0.0.16:8814/api/",
         dataType: 'json',
         async: false,
-        data: '{"mdsUsername": "' + username + '", "mdsPassword" : "' + password + '"}',
+        data: '{"userName": "' + username + '", "passWord" : "' + password + '"}',
         success: function (){
         alert('You are now logged in.');
         }
@@ -66,7 +161,7 @@ cap = {
 cap.methods = {
   pageLoad: async Parent => {
     try {
-      //parent varialbe is what control we shall use as our wrapper for our container
+      //parent variable is what control we use as our wrapper for our container
       cap.parent = $(Parent)
       //define our container and add it to the parent
       cap.container = $('<div>').appendTo(cap.parent)
