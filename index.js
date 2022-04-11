@@ -3,7 +3,15 @@ References-
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
 
 */
-
+/*$(function () {
+    $("#button").dxButton({
+        icon: "floppy",
+        text: "Archive",
+        onClick: function() {
+            alert("The Button was clicked");
+        }
+    });
+});*/
 //create variables in our namespace. always do this so you know what you are using later
 _APIURL ="http://10.0.0.16:8814/api/";
 cap = {
@@ -19,7 +27,7 @@ cap = {
 cap.methods = {
   pageLoad: async Parent => {
     try {
-      //parent variable is what control we use as our wrapper for our container
+      //parent varialbe is what control we shall use as our wrapper for our container
       cap.parent = $(Parent)
       //define our container and add it to the parent
       cap.container = $('<div>').appendTo(cap.parent)
@@ -81,14 +89,21 @@ cap.methods = {
                 },
                 remove:(data, info)=>{
                     debugger
-                    return cap.methods.delete(`allEmployees`,data)
+                    return cap.methods.delete(`allEmployees`,data);
                 },
                 insert:(data, info)=>{
                     debugger
                       return cap.methods.post("allEmployees",Object.assign({},data, info))
                 },
             }),
+            searchPanel:{
+                visible: true,
+                width: 240,
+                placeholder: "Search"
+            },
             columns:[
+             
+            
                 {
                     "type": "buttons",
                     "buttons":["edit","delete"]
@@ -177,9 +192,18 @@ cap.methods = {
                 },
                 {
                     "dataField": "emailGroup"
-                }
+                },
+                {
+                    "dataField": "licenses",
+                    formItem:{
+                        editorOptions:{value:false}
+                    }
+                },
+                
             ]
-        }
+        },
+            
+        
        ).dxDataGrid('instance')
       await cap.methods.showContainer();
       return;
