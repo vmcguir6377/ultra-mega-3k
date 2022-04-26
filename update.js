@@ -1,17 +1,3 @@
-/*
-References-
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
-
-*/
-/*$(function () {
-    $("#button").dxButton({
-        icon: "floppy",
-        text: "Archive",
-        onClick: function() {
-            alert("The Button was clicked");
-        }
-    });
-});*/
 //create variables in our namespace. always do this so you know what you are using later
 _APIURL ="http://10.0.0.16:8814/api/";
 cap = {
@@ -58,7 +44,7 @@ cap.methods = {
             columnHidingEnabled: true,
             editing:{
             /*editRowKey:'inx',*/
-            allowAdding:true,
+            allowAdding:false,
             allowUpdating: true,
             allowDeleting: true,
             mode:'popup',
@@ -68,14 +54,15 @@ cap.methods = {
         },
         allowColumnResizing: true,
         showBorders: true,
+        scrolling: {
+            mode: 'virtual',
+          },
         columnResizingMode: 'nextColumn',
         columnMinWidth: 50,
         columnAutoWidth: true,
         showBorders: true,
         /*keyExpr:'inx',*/
-        scrolling: {
-            mode: 'virtual',
-          },
+        
         paging: {
             enabled: false,
           },
@@ -104,7 +91,8 @@ cap.methods = {
             columns:[
                 {
                     "type": "buttons",
-                    "buttons":["edit","delete"]
+                    "buttons":["edit"],
+                    visible: true
                 },
                 {
                     "dataField": "inx",
@@ -328,27 +316,3 @@ $(() => {
     cap.events.onError(err)
   }
 })
-$(function() {
-  $("#login").dxTextBox({
-      name: "Login"
-  }).dxValidator({
-      validationRules: [
-          { type: "required" }
-      ]
-  });
-
-  $("#password").dxTextBox({
-      name: "Password",
-      mode: "password"
-  }).dxValidator({
-      validationRules: [
-          { type: "required" }
-      ]
-  });
-
-  $("#validateAndSubmit").dxButton({
-      text: "Submit",
-      type: "success",
-      useSubmitBehavior: true
-  });
-});

@@ -8,11 +8,34 @@
 	<title>Universal Contacts Manager</title>
 
 	<link rel="stylesheet" href="style.css" />
-</head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 
 <body>
+    </div>
+    <header>
+        <div class="top">
+        <a href="./menu.html" class="button"><img src="./IMG/R.png"
+        width="35" height="35"></a>
+    </div>
+    <script>$(document).ready(function(){
+        $(".header-right > a").click(function() {
+          $(".menu").addClass("active");
+        });
+        $(".close").click(function() {
+          $(".menu").removeClass("active");
+        });
+      });
+    </script>
+    </header>
+    <form action="/Login" method="post">
+        <div id="login"></div>
+        <div id="password"></div>
+        <div id="validateAndSubmit"></div>
+    </form>
+    
     <h1>Universal Contacts Manager</h1>
     <h2>United Locating Services</h2>
+    
       <container>
         <div>
             <article>Add/Edit Employee</article>
@@ -24,7 +47,7 @@
         <div>
             <article>Update Employee</article>
             <br>
-            <a href="./index.html"><img src="./IMG/update.png"
+            <a href="./update.html"><img src="./IMG/update.png"
                     width="300" height="300" /></a>
                 <alt=section update employee />
         </div>
@@ -36,6 +59,12 @@
                 <alt=section add employee />
         </div>
         </container>
+
+        <form action="/Login" method="post">
+            <div id="login"></div>
+            <div id="password"></div>
+            <div id="validateAndSubmit"></div>
+        </form>
         <!-- Footer -->
 <footer>
 

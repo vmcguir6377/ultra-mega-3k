@@ -36,21 +36,24 @@ cap.methods = {
         }
         cap.methods.emptyContainer();
 //render a new gridview and assign the instance to the variable
+
        cap.employeeGrid = 
        $('<div>')
        .appendTo(cap.container)
        .dxDataGrid(
         {
+            scrolling: {
+                useNative: true,
+                mode: "virtual"
+            },
             columnHidingEnabled: true,
             editing:{
             /*editRowKey:'inx',*/
-            allowAdding:true,
+            allowAdding:false,
             allowUpdating: true,
             allowDeleting: true,
             mode:'popup',
-            useIcons: true
-            
-            
+            useIcons: true, 
         },
         allowColumnResizing: true,
         showBorders: true,
@@ -59,11 +62,8 @@ cap.methods = {
         columnAutoWidth: true,
         showBorders: true,
         /*keyExpr:'inx',*/
-        scrolling: {
-            mode: 'virtual',
-          },
         paging: {
-            enabled: false,
+            enabled: true,
           },
         dataSource: new DevExpress.data.CustomStore({
                 load:(opts)=>{
