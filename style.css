@@ -1,0 +1,133 @@
+* {
+    background-color: #ff7944;
+}
+.column1 {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  margin-bottom: 500px;
+  margin-left: -35px;
+}
+.column2 {
+  float: right;
+  width: 50%;
+  padding: 10px;
+  margin-left: 950px;
+  margin-right: 50px;
+  margin-top: -1920px;
+}
+h1 {
+    text-align: center;
+    font-size: 40px;
+    color:#09078d;
+    margin-bottom: 0px;
+}
+h2 {
+    text-align: center;
+    font-size: 35px;
+    color:#09078d;
+    margin-top: 0px;
+}
+a href {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    
+}
+article {
+    margin-left: 135px;
+    margin-bottom: -5px;
+}
+article3 {
+    margin-left: 105px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-right: 55px;
+}
+container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 500;
+    margin-left: 0px;
+    margin-bottom: 300px;
+    margin-right: 15px;
+    padding-top: 95px;
+}
+img {
+    margin-left: 85px;
+}
+
+/* Add employee html*/
+* {
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --primary: #ff7944;
+    --secondary: #09078d;
+    --tertiary: rgb(241, 247, 247);
+    --grey: #333;
+    font-size: 62.5%;
+  }
+  
+  body {
+    background: #ff7944;
+    color: var(--white);
+    margin: 100;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  header {
+    background: var(--secondary);
+    padding: 30px 25px;
+    border-bottom: 5px solid var(--primary);
+  }
+  
+  header p {
+    color: var(--tertiary);
+    margin: 5px 0 20px;
+    font-size: 2rem;
+  }
+
+  
+  footer {
+     padding-top: 0px;
+     padding-left: 0px;
+     padding-right: 0px;
+     padding-bottom: 0px;
+    margin-bottom: -150px;
+    width: 100%;
+    
+  }
+  footer h2 {
+    
+    font-size: 15px;
+    margin: 0;
+  }
+  
+  /* Media queries */
+  @media screen and (max-width: 980px) {
+    form .form-group {
+      flex: 1 100%;
+    }
+  
+    form .form-group button {
+      width: 100%;
+    }
+  
+    .task-list-wrapper {
+      flex-basis: 100%;
+    }
+  
+  }
+
+  
+  
+  

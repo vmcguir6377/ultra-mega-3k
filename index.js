@@ -102,17 +102,15 @@ cap.methods = {
                 placeholder: "Search"
             },
             columns:[
-             
-            
                 {
                     "type": "buttons",
                     "buttons":["edit","delete"]
                 },
                 {
                     "dataField": "inx",
-                    visible:false,
+                    visible: false,
                     formItem:{
-                        visible:false
+                        visible: false
                     }
                 },
                 {
@@ -193,18 +191,16 @@ cap.methods = {
                 {
                     "dataField": "emailGroup"
                 },
-                {
-                    "dataField": "licenses",
+                /*{
+                    "dataField": "Licenses",
                     formItem:{
                         editorOptions:{value:false}
-                    }
-                },
+                    }*/
                 
+              
             ]
-        },
-            
-        
-       ).dxDataGrid('instance')
+        }
+     ).dxDataGrid('instance')
       await cap.methods.showContainer();
       return;
     } 
@@ -247,7 +243,7 @@ cap.methods = {
         reject(err)
       }
     })
-  },
+},
   //inform the user of general information
   showMessage: message => {
     DevExpress.ui.notify(message, 'info', 3000)
