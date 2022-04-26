@@ -139,13 +139,11 @@ h2 {
     font-size: 35px;
     color:white;
     margin-top: 100px;
-    
 }
 a href {
     text-align: center;
     font-size: 24px;
     font-weight: 500;
-    
 }
 article {
     margin-left: 135px;
@@ -173,54 +171,41 @@ img {
     margin-left: 85px;
 }
 
-/* Add employee html*/
 * {
     box-sizing: border-box;
   }
-  
-  :root {
+:root {
     --primary: #ff7944;
     --secondary: #09078d;
     --tertiary: rgb(241, 247, 247);
     --grey: #333;
     font-size: 62.5%;
   }
-  
-  body {
+body {
     background: #ff7944;
     color: var(--white);
-    margin: 100;
+    margin-bottom: 100;
     padding: 0;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
-  
-  header {
+header {
     background: var(--secondary);
     padding: 30px 25px;
     border-bottom: 5px solid var(--primary);
   }
-  
-  header p {
-    color: var(--tertiary);
-    margin: 5px 0 20px;
-    font-size: 2rem;
-  }
-
-  
-  footer {
-     padding-top: 0px;
-     padding-left: 0px;
-     padding-right: 0px;
-     padding-bottom: 0px;
-    margin-bottom: -150px;
+footer {
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    margin-top: -160px;
+    margin-bottom: 0px;
     width: 100%;
-    
-  }
-  footer h2 {
-    
+    }
+footer h2 {
     font-size: 15px;
     margin: 0;
   }
@@ -230,16 +215,14 @@ img {
     form .form-group {
       flex: 1 100%;
     }
-  
-    form .form-group button {
-      width: 100%;
-    }
-  
-    .task-list-wrapper {
-      flex-basis: 100%;
-    }
-  
+  img {
+      flex: 1 100%;
   }
+  
+  
+   
+  
+  
 
   
   
