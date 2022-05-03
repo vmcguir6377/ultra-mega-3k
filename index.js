@@ -13,14 +13,14 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
     });
 });*/
 //create variables in our namespace. always do this so you know what you are using later
-_APIURL ="http://10.0.0.16:8814/api/";
+_APIURL = "http://10.0.0.16:8814/api/";
 cap = {
   parent: null,
   container: null,
   employeeGrid: null,
-  employeeGridData:[]
+  employeeGridData: []
   //static options for the gridview this way if you open it up again, you dont get old variables. 
- 
+
 }
 
 //now make your method and event properties within your namespace
@@ -42,173 +42,175 @@ cap.methods = {
   showEmployeeGridView: async () => {
     try {
       await cap.methods.hideContainer();
-      
+
       //remove old if already exists
-        if(cap.employeeGrid!==null){
-            cap.employeeGrid.dispose();
-            cap.employeeGrid.element().remove();
-        }
-        cap.methods.emptyContainer();
-//render a new gridview and assign the instance to the variable
-       cap.employeeGrid = 
-       $('<div>')
-       .appendTo(cap.container)
-       .dxDataGrid(
-        {
-            columnHidingEnabled: true,
-            editing:{
-            /*editRowKey:'inx',*/
-            allowAdding:true,
-            allowUpdating: true,
-            allowDeleting: true,
-            mode:'popup',
-            useIcons: true
-            
-            
-        },
-        allowColumnResizing: true,
-        showBorders: true,
-        columnResizingMode: 'nextColumn',
-        columnMinWidth: 50,
-        columnAutoWidth: true,
-        showBorders: true,
-        /*keyExpr:'inx',*/
-        scrolling: {
-            mode: 'virtual',
-          },
-        paging: {
-            enabled: false,
-          },
-        dataSource: new DevExpress.data.CustomStore({
-                load:(opts)=>{
-                    return cap.methods.get("allEmployees");
+      if (cap.employeeGrid !== null) {
+        cap.employeeGrid.dispose();
+        cap.employeeGrid.element().remove();
+      }
+      cap.methods.emptyContainer();
+      //render a new gridview and assign the instance to the variable
+      cap.employeeGrid =
+        $('<div>')
+          .appendTo(cap.container)
+          .dxDataGrid(
+            {
+              columnHidingEnabled: true,
+              editing: {
+                /*editRowKey:'inx',*/
+                allowAdding: true,
+                allowUpdating: true,
+                allowDeleting: true,
+                mode: 'popup',
+                useIcons: true
+              },
+              allowColumnResizing: true,
+              showBorders: true,
+              columnResizingMode: 'nextColumn',
+              columnMinWidth: 50,
+              columnAutoWidth: true,
+              showBorders: true,
+              /*keyExpr:'inx',*/
+              scrolling: {
+                mode: 'virtual',
+              },
+              paging: {
+                enabled: false,
+              },
+              dataSource: new DevExpress.data.CustomStore({
+                load: (opts) => {
+                  return cap.methods.get("allEmployees");
                 },
-                update:(data, info)=>{
-                    debugger
-                      return cap.methods.post("allEmployees",Object.assign({},data, info))
+                update: (data, info) => {
+                  debugger
+                  return cap.methods.post("allEmployees",Object.assign({}, data, info))
                 },
                 remove:(data, info)=>{
-                    debugger
-                    return cap.methods.delete(`allEmployees`,data);
+                  debugger
+                  return cap.methods.delete(`allEmployees`, data);
                 },
-                insert:(data, info)=>{
-                    debugger
-                      return cap.methods.post("allEmployees",Object.assign({},data, info))
+                insert: (data, info)=>{
+                  debugger
+                  return cap.methods.post("allEmployees",Object.assign({},data, info))
                 },
-            }),
-            searchPanel:{
+              }),
+              searchPanel: {
                 visible: true,
                 width: 240,
                 placeholder: "Search"
-            },
-            columns:[
+              },
+              columns:[
                 {
-                    "type": "buttons",
-                    "buttons":["edit","delete"]
+                  "type": "buttons",
+                  "buttons": ["edit", "delete"]
                 },
                 {
-                    "dataField": "inx",
-                    visible: false,
+                  "dataField": "inx",
+                  visible: true,
+                  formItem: {
+                    visible: true
+                  }
+                },
+                {
+                  "dataField": "mdsUsername"
+                },
+                {
+                  "dataField": "mdsPassword"
+                },
+                {
+                  "dataField": "firstName"
+                },
+                {
+                  "dataField": "lastName"
+                },
+                {
+                  "dataField": "address"
+                },
+                {
+                  "dataField": "city"
+                },
+                {
+                  "dataField": "state"
+                },
+                {
+                  "dataField": "zip"
+                },
+                {
+                  "dataField": "phone"
+                },
+                {
+                  "dataField": "workPhone"
+                },
+                {
+                  "dataField": "email"
+                },
+                {
+                  "dataField": "workEmail"
+                },
+                {
+                  "dataField": "districtName"
+                },
+                {
+                  "dataField": "regionName"
+                },
+                {
+                  "dataField": "role"
+                },
+                {
+                  "dataField": "mdsEid"
+                },
+                {
+                  "dataField": "externalId"
+                },
+                {
+                  "dataField": "active",
+                  formItem: {
+                    editorOptions: { value: false }
+                  }
+                },
+                {
+                  "dataField": "supervisorId"
+                },
+                {
+                  "dataField": "clearanceLevel"
+                },
+                {
+                  "dataField": "dateAdded"
+                },
+                {
+                  "dataField": "payType"
+                },
+                {
+                  "dataField": "payTier"
+                },
+                {
+                  "dataField": "payTierMultiplier"
+                },
+                {
+                  "dataField": "emailGroup"
+                },
+                {
+                    "dataField": "licenses",
                     formItem:{
-                        visible: false
+                        editorOptions:{ value:false }
                     }
-                },
-                {
-                    "dataField": "mdsUsername"
-                },
-                {
-                    "dataField": "mdsPassword"
-                },
-                {
-                    "dataField": "firstName"
-                },
-                {
-                    "dataField": "lastName"
-                },
-                {
-                    "dataField": "address"
-                },
-                {
-                    "dataField": "city"
-                },
-                {
-                    "dataField": "state"
-                },
-                {
-                    "dataField": "zip"
-                },
-                {
-                    "dataField": "phone"
-                },
-                {
-                    "dataField": "workPhone"
-                },
-                {
-                    "dataField": "email"
-                },
-                {
-                    "dataField": "workEmail"
-                },
-                {
-                    "dataField": "districtName"
-                },
-                {
-                    "dataField": "regionName"
-                },
-                {
-                    "dataField": "role"
-                },
-                {
-                    "dataField": "mdsEid"
-                },
-                {
-                    "dataField": "externalId"
-                },
-                {
-                    "dataField": "active",
-                    formItem:{
-                        editorOptions:{value:false}
-                    }
-                },
-                {
-                    "dataField": "supervisorId"
-                },
-                {
-                    "dataField": "clearanceLevel"
-                },
-                {
-                    "dataField": "dateAdded"
-                },
-                {
-                    "dataField": "payType"
-                },
-                {
-                    "dataField": "payTier"
-                },
-                {
-                    "dataField": "payTierMultiplier"
-                },
-                {
-                    "dataField": "emailGroup"
-                },
-                /*{
-                    "dataField": "Licenses",
-                    formItem:{
-                        editorOptions:{value:false}
-                    }*/
+                  }
+                ]
+              },
                 
-              
-            ]
-        }
-     ).dxDataGrid('instance')
+
+
+                  
+                
+           ) .dxDataGrid('instance')
       await cap.methods.showContainer();
       return;
-    } 
+    }
     catch (err) {
       cap.events.onError(err)
     }
   },
- 
+
   //clear our container so we can do something else
   hideContainer: () => {
     return new Promise((resolve, reject) => {
@@ -243,57 +245,102 @@ cap.methods = {
         reject(err)
       }
     })
-},
+  },
   //inform the user of general information
   showMessage: message => {
     DevExpress.ui.notify(message, 'info', 3000)
   },
-  delete:(endpoint, data)=>{
+  delete: (endpoint, data) => {
     return new Promise((resolve, reject) => {
-        try {
-          var settings = {
-              "url": `${_APIURL}${endpoint}/${data.inx}`,
-              "method": "DELETE"
-            };
-            
-            $.ajax(settings).done(function (response) {
-              resolve('success');
-            }).fail((err)=>reject(err))
-  
-        } catch (err) {
-            cap.events.onError(err);
-            reject(err);
-        }
-      })
+      try {
+        var settings = {
+          "url": `${_APIURL}${endpoint}/${data.inx}`,
+          "method": "DELETE"
+        };
+
+        $.ajax(settings).done(function (response) {
+          resolve('success');
+        }).fail((err) => reject(err))
+
+      } catch (err) {
+        cap.events.onError(err);
+        reject(err);
+      }
+    })
+  },
+  put: (endpoint, data) => {
+    return new Promise((resolve, reject) => {
+      try {
+        var settings = {
+          "url": `${_APIURL}${endpoint}/${data.inx}`,
+          "method": "PUT",
+          "data": data,
+        };
+
+        $.ajax(settings).done(function (response) {
+          resolve('success');
+        }).fail((err)=>reject(err))
+
+      } catch (err) {
+        cap.events.onError(err);
+        reject(err);
+      }
+    })
   },
   //post something to the api
   post: (endpoint, data) => {
     return new Promise((resolve, reject) => {
       try {
         var settings = {
-            "url": `${_APIURL}${endpoint}`,
-            "method": "POST",
-            "data": data,
-          };
-          
-          $.ajax(settings).done(function (response) {
-            resolve('success');
-          }).fail((err)=>reject(err))
+          "url": `${_APIURL}${endpoint}`,
+          "method": "POST",
+          "data": data,
+        };
+
+        $.ajax(settings).done(function (response) {
+          resolve('success');
+        }).fail((err)=>reject(err))
 
       } catch (err) {
-          cap.events.onError(err);
-          reject(err);
+        cap.events.onError(err);
+        reject(err);
       }
     })
   },
+  //archive an entry:how do i grab an inx and send it out of this db and to a new one?? 
+  /*archive: (endpoint, data) => {
+    return new Promise((resolve, reject) => {
+      try {
+        var settings = {
+          "url": `${_APIURL}${endpoint}/${data.inx}`,
+          "method": "POST",POST to archiveData db
+          "data": data,
+        };
+
+        var settings = {
+          "url": `${_APIURL}${endpoint}`,
+          "method": "POST",
+          "data": data,
+        };
+
+        $.ajax(settings).done(function (response) {
+          resolve('success');
+        }).fail((err) => reject(err))
+
+      } catch (err) {
+        cap.events.onError(err);
+        reject(err);*/
+      
+    
+  
   //get something from api
   get: endpoint => {
-    return new Promise((resolve,reject)=>{
-        $.get(`${_APIURL}${endpoint}`)
-        .then((res)=>{resolve(res)})
-        .catch((err)=>{reject(err)})
+    return new Promise((resolve, reject) => {
+      $.get(`${_APIURL}${endpoint}`)
+        .then((res) => { resolve(res) })
+        .catch((err) => { reject(err) })
     });
-    }
+  }
 }
 cap.events = {
 
@@ -328,27 +375,27 @@ $(() => {
     cap.events.onError(err)
   }
 })
-$(function() {
+$(function () {
   $("#login").dxTextBox({
-      name: "Login"
+    name: "Login"
   }).dxValidator({
-      validationRules: [
-          { type: "required" }
-      ]
+    validationRules: [
+      { type: "required" }
+    ]
   });
 
   $("#password").dxTextBox({
-      name: "Password",
-      mode: "password"
+    name: "Password",
+    mode: "password"
   }).dxValidator({
-      validationRules: [
-          { type: "required" }
-      ]
+    validationRules: [
+      { type: "required" }
+    ]
   });
 
   $("#validateAndSubmit").dxButton({
-      text: "Submit",
-      type: "success",
-      useSubmitBehavior: true
+    text: "Submit",
+    type: "success",
+    useSubmitBehavior: true
   });
 });
