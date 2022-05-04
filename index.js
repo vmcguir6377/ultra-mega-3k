@@ -1,7 +1,6 @@
 /*
 References-
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
-
 */
 /*$(function () {
     $("#button").dxButton({
@@ -316,17 +315,14 @@ cap.methods = {
           "method": "POST",POST to archiveData db
           "data": data,
         };
-
         var settings = {
           "url": `${_APIURL}${endpoint}`,
           "method": "POST",
           "data": data,
         };
-
         $.ajax(settings).done(function (response) {
           resolve('success');
         }).fail((err) => reject(err))
-
       } catch (err) {
         cap.events.onError(err);
         reject(err);*/
