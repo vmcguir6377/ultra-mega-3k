@@ -63,6 +63,13 @@ cap.methods = {
                 mode: 'popup',
                 useIcons: true
               },
+              grouping: {
+                contextMenuEnabled: true
+              },
+              groupPanel: {
+                visible: true,
+                allowColumnDragging: true,
+              },
               allowColumnResizing: true,
               showBorders: true,
               showDropDownButton: true,
@@ -408,7 +415,7 @@ $(() => {
     },
   });
 
-  const $loadIndicator = $('<div>').dxLoadIndicator({ visible: false });
+ /* const $loadIndicator = $('<div>').dxLoadIndicator({ visible: false });
   const $dropDownButtonImage = $('<./img/triangle-down-256.webp.jpg>', {
     src: 'images/icons/custom-dropbutton-icon.svg',
     class: 'custom-icon',
@@ -464,4 +471,4 @@ $(() => {
       e.component.option('dropDownButtonTemplate', dropDownButtonTemplate(e.selectedItem));
     },
   });
-});
+});*/});

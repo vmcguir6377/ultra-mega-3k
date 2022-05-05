@@ -55,6 +55,13 @@ cap.methods = {
                 mode: 'popup',
                 useIcons: true,
               },
+              grouping: {
+                contextMenuEnabled: true
+              },
+              groupPanel: {
+                visible: true,
+                allowColumnDragging: true,
+              },
               allowColumnResizing: true,
               showBorders: true,
               columnResizingMode: 'nextColumn',
