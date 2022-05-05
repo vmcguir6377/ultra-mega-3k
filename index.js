@@ -76,6 +76,12 @@ cap.methods = {
               filterRow: {
                 visible: true
               },
+              function() {
+                $("#emailButton").dxButton({
+                    icon: "email",
+                    text: "Contact"
+                });
+            },
               columnResizingMode: 'nextColumn',
               columnMinWidth: 50,
               columnAutoWidth: true,
