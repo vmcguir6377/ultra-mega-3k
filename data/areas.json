@@ -1,0 +1,42 @@
+[
+  {
+    "ID": 1,
+    "name": "Austin",
+    "expanded": true
+  },
+  {
+    "ID": 2,
+    "name": "Houston",
+    "expanded": true
+  },
+  {
+    "ID": 3,
+    "name": "Missoula",
+    "expanded": true
+  },
+  {
+    "ID": 4,
+    "name": "Minnesota",
+    "expanded": true
+  },
+  {
+    "ID": 5,
+    "name": "Oklahoma City",
+    "expanded": true
+  },
+  {
+    "ID": 6,
+    "name": "San Antonio",
+    "expanded": true
+  },
+  {
+    "ID": 7,
+    "name": "South Dakota",
+    "expanded": true
+  },
+  {
+    "ID": 8,
+    "name": "Tulsa",
+    "expanded": true
+  }
+]

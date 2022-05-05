@@ -4,52 +4,32 @@
 a href {
     color:#ff7944;
 }
-.dx-dropdownlist-popup-wrapper .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item-content {
-    padding-left: 7px;
-    padding-right: 7px;
+.dx-dropdowneditor-button .dx-button-content {
+    text-align: center;
   }
   
-  .custom-item {
-    position: relative;
-    min-height: 30px;
+  .dx-theme-material .dx-dropdowneditor-button .dx-button-content .dx-loadindicator {
+    width: 24px;
+    height: 4px;
   }
   
-  .dx-dropdowneditor-input-wrapper .custom-item > img {
-    padding-left: 8px;
+  
+  .custom-icon {
+      width: 25px;
+      height: 5px;
+  }
+  
+  
+  .custom-item img {
+    float: right;
   }
   
   .custom-item .product-name {
-    display: inline-block;
-    padding-left: 50px;
-    text-indent: 0;
-    line-height: 30px;
-    font-size: 15px;
-    width: 100%;
+    line-height: 12px;
+    padding-left: 5px;
   }
   
-  .custom-item > img {
-    left: 1px;
-    position: absolute;
-    top: 50%;
-    margin-top: -15px;
-  }
-  
-  .dx-theme-material #custom-templates .dx-texteditor-buttons-container {
-    display: none;
-  }
-  
-  .current-value {
-    padding: 10px 0;
-  }
-  
-  .current-value > span {
-    font-weight: bold;
-  }
-  
-  .dx-theme-material .dx-selectbox-container .product-name {
-    padding-left: 58px;
-  }
-  
+
 * {
     margin: 0;
     padding: 0;
@@ -85,6 +65,7 @@ body {
 .navbar .nav-container li {
     list-style: none;
 }
+
 
 .navbar .nav-container a {
     text-decoration: none;

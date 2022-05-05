@@ -4,6 +4,7 @@ const simpleProducts = [
   'Minnesota',
   'Missoula',
   'Oklahoma City',
+  'San Antonio',
   'South Dakota',
   'Tulsa'
 
