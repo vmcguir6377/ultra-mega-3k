@@ -118,8 +118,31 @@ cap.methods = {
               columns:[
                 {
                   "type": "buttons",
-                  "buttons": ["edit", "delete", "email"]
+                  "width": 110,
+                  "buttons": ["edit",{
+                    hint: 'Email',
+                    icon: 'email',
+                  },
+                   {
+                     hint: 'Archive',
+                  icon: 'copy'
+                   
+                    /*visible(e) {//******this is the code for the archive function, not worked out yet
+                      return !e.row.isEditing;
+                    },
+                    disabled(e) {
+                      return isChief(e.row.data.Position);
+                    },
+                    onClick(e) {
+                      const clonedItem = $.extend({}, e.row.data, { ID: maxID += 1 });
+          
+                      employees.splice(e.row.rowIndex, 0, clonedItem);
+                      e.component.refresh(true);
+                      e.event.preventDefault();
+                    },*/
+                  }],
                 },
+                
                 {
                   "dataField": "inx",
                   visible: true,
