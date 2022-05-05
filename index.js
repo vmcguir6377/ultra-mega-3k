@@ -73,6 +73,9 @@ cap.methods = {
               allowColumnResizing: true,
               showBorders: true,
               showDropDownButton: true,
+              filterRow: {
+                visible: true
+              },
               columnResizingMode: 'nextColumn',
               columnMinWidth: 50,
               columnAutoWidth: true,
@@ -109,7 +112,7 @@ cap.methods = {
               columns:[
                 {
                   "type": "buttons",
-                  "buttons": ["edit", "delete"]
+                  "buttons": ["edit", "delete", "email"]
                 },
                 {
                   "dataField": "inx",

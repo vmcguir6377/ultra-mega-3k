@@ -97,7 +97,7 @@ cap.methods = {
               columns: [
                 {
                   "type": "buttons",
-                  "buttons": ["edit", "delete"],
+                  "buttons": ["edit", "delete","email"],
                   visible: false
                 },
                 {
