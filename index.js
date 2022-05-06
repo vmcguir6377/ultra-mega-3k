@@ -2,15 +2,7 @@
 References-
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
 */
-/*$(function () {
-    $("#button").dxButton({
-        icon: "floppy",
-        text: "Archive",
-        onClick: function() {
-            alert("The Button was clicked");
-        }
-    });
-});*/
+
 //create variables in our namespace. always do this so you know what you are using later
 _APIURL = "http://10.0.0.16:8814/api/";
 cap = {
@@ -21,6 +13,7 @@ cap = {
   //static options for the gridview this way if you open it up again, you dont get old variables. 
 
 }
+
 
 //now make your method and event properties within your namespace
 cap.methods = {
@@ -53,16 +46,29 @@ cap.methods = {
         $('<div>')
           .appendTo(cap.container)
           .dxDataGrid(
-            {
-              columnHidingEnabled: true,
+
+        {
+          columnHidingEnabled: true,
               editing: {
+                /*addRow() {
+                $('#success-contained').dxButton({
+                  stylingMode: 'contained',
+                  text: 'Contained',
+                  type: 'success',
+                  width: 120,
+                  onClick() {
+                    DevExpress.ui.notify('The Contained button was clicked');
+                  },
+                })
+              },*/
                 /*editRowKey:'inx',*/
                 allowAdding: true,
-                allowUpdating: true,
-                allowDeleting: true,
                 mode: 'popup',
-                useIcons: true
+                allowUpdating: true,
+                allowDeleting: false,
+                useIcons: true,
               },
+
               grouping: {
                 contextMenuEnabled: true
               },
@@ -76,12 +82,18 @@ cap.methods = {
               filterRow: {
                 visible: true
               },
+
               function() {
                 $("#emailButton").dxButton({
-                    icon: "email",
-                    text: "Contact"
+                  icon: "email",
+                  text: "Contact",
+                  onClick: function () {
+                    "parent.location='mailto:vmcguire@unitedlocating.com'"
+                  },
+
+
                 });
-            },
+              },
               columnResizingMode: 'nextColumn',
               columnMinWidth: 50,
               columnAutoWidth: true,
@@ -99,50 +111,51 @@ cap.methods = {
                 },
                 update: (data, info) => {
                   debugger
-                  return cap.methods.put("allEmployees",Object.assign({}, data, info))
+                  return cap.methods.put("allEmployees", Object.assign({}, data, info))
                 },
-                remove:(data, info)=>{
+                remove: (data, info) => {
                   debugger
                   return cap.methods.delete(`allEmployees`, data);
                 },
-                insert: (data, info)=>{
+                insert: (data, info) => {
                   debugger
-                  return cap.methods.post("allEmployees",Object.assign({},data, info))
+                  return cap.methods.post("allEmployees", Object.assign({}, data, info))
                 },
               }),
+
               searchPanel: {
                 visible: true,
                 width: 240,
                 placeholder: "Search"
               },
-              columns:[
+              columns: [
                 {
                   "type": "buttons",
                   "width": 110,
-                  "buttons": ["edit",{
+                  "buttons": ["edit", {
                     hint: 'Email',
                     icon: 'email',
                   },
-                   {
-                     hint: 'Archive',
-                  icon: 'copy'
-                   
-                    /*visible(e) {//******this is the code for the archive function, not worked out yet
-                      return !e.row.isEditing;
-                    },
-                    disabled(e) {
-                      return isChief(e.row.data.Position);
-                    },
-                    onClick(e) {
-                      const clonedItem = $.extend({}, e.row.data, { ID: maxID += 1 });
-          
-                      employees.splice(e.row.rowIndex, 0, clonedItem);
-                      e.component.refresh(true);
-                      e.event.preventDefault();
-                    },*/
-                  }],
+                    {
+                      hint: 'Archive',
+                      icon: 'copy'
+
+                      /*visible(e) {//******this is the code for the archive function, not worked out yet**********************
+                        return !e.row.isEditing;
+                      },
+                      disabled(e) {
+                        return isChief(e.row.data.Position);
+                      },
+                      onClick(e) {
+                        const clonedItem = $.extend({}, e.row.data, { ID: maxID += 1 });
+            
+                        employees.splice(e.row.rowIndex, 0, clonedItem);
+                        e.component.refresh(true);
+                        e.event.preventDefault();
+                      },*/
+                    }],
                 },
-                
+
                 {
                   "dataField": "inx",
                   visible: true,
@@ -229,19 +242,19 @@ cap.methods = {
                   "dataField": "emailGroup"
                 },
                 {
-                    "dataField": "licenses",
-                    formItem:{
-                        editorOptions:{ value:false }
-                    }
+                  "dataField": "licenses",
+                  formItem: {
+                    editorOptions: { value: false }
                   }
-                ]
-              },
-                
+                }
+              ]
+            },
 
 
-                  
-                
-           ) .dxDataGrid('instance')
+
+
+
+          ).dxDataGrid('instance')
       await cap.methods.showContainer();
       return;
     }
@@ -318,7 +331,7 @@ cap.methods = {
 
         $.ajax(settings).done(function (response) {
           resolve('success');
-        }).fail((err)=>reject(err))
+        }).fail((err) => reject(err))
 
       } catch (err) {
         cap.events.onError(err);
@@ -338,7 +351,7 @@ cap.methods = {
 
         $.ajax(settings).done(function (response) {
           resolve('success');
-        }).fail((err)=>reject(err))
+        }).fail((err) => reject(err))
 
       } catch (err) {
         cap.events.onError(err);
@@ -366,9 +379,9 @@ cap.methods = {
       } catch (err) {
         cap.events.onError(err);
         reject(err);*/
-      
-    
-  
+
+
+
   //get something from api
   get: endpoint => {
     return new Promise((resolve, reject) => {
@@ -411,6 +424,7 @@ $(() => {
     cap.events.onError(err)
   }
 })
+
 $(function () {
   $("#login").dxTextBox({
     name: "Login"
@@ -447,60 +461,61 @@ $(() => {
     },
   });
 
- /* const $loadIndicator = $('<div>').dxLoadIndicator({ visible: false });
-  const $dropDownButtonImage = $('<./img/triangle-down-256.webp.jpg>', {
-    src: 'images/icons/custom-dropbutton-icon.svg',
-    class: 'custom-icon',
-  });
-
-  $('#load-indicator').dxSelectBox({
-    dropDownButtonTemplate(data, element) {
-      $(element).append($loadIndicator, $dropDownButtonImage);
-    },
-    dataSource: {
-      loadMode: 'raw',
-      load() {
-        const loadIndicator = $loadIndicator.dxLoadIndicator('instance');
-        const d = $.Deferred();
-
-        $dropDownButtonImage.hide();
-        loadIndicator.option('visible', true);
-
-        setTimeout(() => {
-          d.resolve(simpleProducts);
-          $dropDownButtonImage.show();
-          loadIndicator.option('visible', false);
-        }, 3000);
-        return d.promise();
-      },
-    },
-  });
-
-  const dropDownButtonTemplate = function (selectedItem) {
-    if (selectedItem) {
-      return function () {
-        return $('<img>', {
-          src: `images/icons/${selectedItem.IconSrc}`,
-          class: 'custom-icon',
-        });
-      };
-    }
-    return 'dropDownButton';
-  };
-
-  $('#dynamic-template').dxSelectBox({
-    items: products,
-    displayExpr: 'Name',
-    showClearButton: true,
-    valueExpr: 'ID',
-    value: 1,
-    itemTemplate(data) {
-      return `<div class='custom-item'><img src='images/icons/${
-        data.IconSrc}' /><div class='product-name'>${
-        data.Name}</div></div>`;
-    },
-    onSelectionChanged(e) {
-      e.component.option('dropDownButtonTemplate', dropDownButtonTemplate(e.selectedItem));
-    },
-  });
-});*/});
+  /* const $loadIndicator = $('<div>').dxLoadIndicator({ visible: false });
+   const $dropDownButtonImage = $('<./img/triangle-down-256.webp.jpg>', {
+     src: 'images/icons/custom-dropbutton-icon.svg',
+     class: 'custom-icon',
+   });
+ 
+   $('#load-indicator').dxSelectBox({
+     dropDownButtonTemplate(data, element) {
+       $(element).append($loadIndicator, $dropDownButtonImage);
+     },
+     dataSource: {
+       loadMode: 'raw',
+       load() {
+         const loadIndicator = $loadIndicator.dxLoadIndicator('instance');
+         const d = $.Deferred();
+ 
+         $dropDownButtonImage.hide();
+         loadIndicator.option('visible', true);
+ 
+         setTimeout(() => {
+           d.resolve(simpleProducts);
+           $dropDownButtonImage.show();
+           loadIndicator.option('visible', false);
+         }, 3000);
+         return d.promise();
+       },
+     },
+   });
+ 
+   const dropDownButtonTemplate = function (selectedItem) {
+     if (selectedItem) {
+       return function () {
+         return $('<img>', {
+           src: `images/icons/${selectedItem.IconSrc}`,
+           class: 'custom-icon',
+         });
+       };
+     }
+     return 'dropDownButton';
+   };
+ 
+   $('#dynamic-template').dxSelectBox({
+     items: products,
+     displayExpr: 'Name',
+     showClearButton: true,
+     valueExpr: 'ID',
+     value: 1,
+     itemTemplate(data) {
+       return `<div class='custom-item'><img src='images/icons/${
+         data.IconSrc}' /><div class='product-name'>${
+         data.Name}</div></div>`;
+     },
+     onSelectionChanged(e) {
+       e.component.option('dropDownButtonTemplate', dropDownButtonTemplate(e.selectedItem));
+     },
+   });
+ });*/
+});

@@ -6,14 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultra Mega 3K</title>
-
-    <head>
+<head>
+    
+        
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- Theme stylesheet -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/devextreme/21.2.6/css/dx.material.orange.dark.compact.css"
             rel="stylesheet">
-        <a href="./frontpage.html"class="dx-icon-home dx-icon-custom-style" style="color: 363640"></a>
-
+        <a href="./frontpage.html"class="dx-icon-home dx-icon-custom-style" style="color: orange"></a>
+        <i class="dx-icon-email dx-icon-custom-style" onclick="parent.location='mailto:vmcguire@unitedlocating.com'">
+        </i>
+       
         <!--js files referenced in head section-->
 
 
@@ -28,10 +31,21 @@
     </head>
 
 <body>
-
+    <script>
     
-    <i class="dx-icon-email dx-icon-custom-style" onclick="parent.location='mailto:vmcguire@unitedlocating.com'">
-    </i>
+        $('#success-contained').dxButton({
+          stylingMode: 'contained',
+          text: 'Add Employee',
+          type: 'success',
+          width: 120,
+          onClick() {
+            DevExpress.ui.notify('The Contained button was clicked');
+          },
+        })
+        ;
+    </script>
+    <button class="dx-button" data-bind="dxButton" text="Add Employee" id="success-contained" style="background-color: orange ; color: black; border-radius: 5px;width: 100px; height: 25px;" ></button>
+    
     <!-- dont put anything in here, the body will be generated with the index.js file. -->
 </body>
 
