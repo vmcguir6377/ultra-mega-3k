@@ -54,8 +54,8 @@ cap.methods = {
                 visible: true,
                 allowColumnDragging: true,
               },
-              
-             export: {
+
+              export: {
                 enabled: true
               },
               onExporting: function (e) {
@@ -78,10 +78,8 @@ cap.methods = {
               },
 
               columnHidingEnabled: true,
-              
               editing: {
                 /*editRowKey:'inx',*/
-               
                 allowExporting: false,
                 allowAdding: true,
                 mode: 'popup',
@@ -114,17 +112,15 @@ cap.methods = {
               /*keyExpr:'inx',*/
               scrolling: {
                 enabled: false
-              
               },
               paging: {
-                  enabled:true,
-                  pageSize:5,
-                  pageIndex:0,
-                  showInfo: true,
-                  showNavigationButtons: true,
-                  showPageSizeSelector: true,
+                enabled: true,
+                pageSize: 5,
+                pageIndex: 0,
+                showInfo: true,
+                showNavigationButtons: true,
+                showPageSizeSelector: true,
               },
-                  
               
               dataSource: new DevExpress.data.CustomStore({
                 load: (opts) => {
@@ -255,8 +251,8 @@ cap.methods = {
                 },
               ]
             },
-            
-            ).dxDataGrid('instance')
+
+          ).dxDataGrid('instance')
       await cap.methods.showContainer();
       return;
     }

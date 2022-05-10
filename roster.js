@@ -1,3 +1,8 @@
+/*
+References-
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
+*/
+/*;*/
 //create variables in our namespace. always do this so you know what you are using later
 _APIURL = "http://10.0.0.16:8814/api/";
 cap = {
@@ -36,25 +41,12 @@ cap.methods = {
       }
       cap.methods.emptyContainer();
       //render a new gridview and assign the instance to the variable
-
       cap.employeeGrid =
         $('<div>')
+
           .appendTo(cap.container)
           .dxDataGrid(
             {
-              scrolling: {
-                useNative: true,
-                mode: "virtual"
-              },
-              columnHidingEnabled: true,
-              editing: {
-                /*editRowKey:'inx',*/
-                allowAdding: false,
-                allowUpdating: true,
-                allowDeleting: true,
-                mode: 'popup',
-                useIcons: true,
-              },
               grouping: {
                 contextMenuEnabled: true
               },
@@ -62,23 +54,81 @@ cap.methods = {
                 visible: true,
                 allowColumnDragging: true,
               },
-              allowColumnResizing: true,
-              showBorders: true,
+
+              export: {
+                enabled: true
+              },
+              onExporting: function (e) {
+                var workbook = new ExcelJS.Workbook();
+                var worksheet = workbook.addWorksheet('Main sheet');
+                DevExpress.excelExporter.exportDataGrid({
+                  worksheet: worksheet,
+                  component: e.component,
+                  customizeCell: function (options) {
+                    var excelCell = options;
+                    excelCell.font = { name: 'Arial', size: 12 };
+                    excelCell.alignment = { horizontal: 'left' };
+                  }
+                }).then(function () {
+                  workbook.xlsx.writeBuffer().then(function (buffer) {
+                    saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'DataGrid.xlsx');
+                  });
+                });
+                e.cancel = true;
+              },
+
+              columnHidingEnabled: true,
+              editing: {
+                /*editRowKey:'inx',*/
+                allowExporting: false,
+                allowAdding: false,
+                mode: 'popup',
+                allowUpdating: false,
+                export: true,
+                allowDeleting: false,
+                useIcons: true,
+                allowColumnResizing: true,
+                showBorders: true,
+                showDropDownButton: true,
+                filterRow: {
+                  visible: true
+                },
+
+                function() {
+                  $("#emailButton").dxButton({
+                    icon: "email",
+                    text: "Contact",
+                    onClick: function () {
+                      "parent.location='mailto:vmcguire@unitedlocating.com'"
+                    },
+                  });
+                },
+              },
+
               columnResizingMode: 'nextColumn',
               columnMinWidth: 50,
               columnAutoWidth: true,
               showBorders: true,
               /*keyExpr:'inx',*/
+              scrolling: {
+                enabled: false
+              },
               paging: {
                 enabled: true,
+                pageSize: 5,
+                pageIndex: 0,
+                showInfo: true,
+                showNavigationButtons: true,
+                showPageSizeSelector: true,
               },
+              
               dataSource: new DevExpress.data.CustomStore({
                 load: (opts) => {
                   return cap.methods.get("allEmployees");
                 },
                 update: (data, info) => {
                   debugger
-                  return cap.methods.post("allEmployees", Object.assign({}, data, info))
+                  return cap.methods.put("allEmployees", Object.assign({}, data, info))
                 },
                 remove: (data, info) => {
                   debugger
@@ -89,6 +139,7 @@ cap.methods = {
                   return cap.methods.post("allEmployees", Object.assign({}, data, info))
                 },
               }),
+
               searchPanel: {
                 visible: true,
                 width: 240,
@@ -97,14 +148,27 @@ cap.methods = {
               columns: [
                 {
                   "type": "buttons",
-                  "buttons": ["edit", "delete","email"],
-                  visible: false
+                  "width": 110,
+                  "buttons": [
+
+                    "edit", {
+                      hint: 'Email',
+                      icon: 'email',
+                    },
+                  ],
                 },
+
                 {
                   "dataField": "inx",
-                  visible: false,
+                  visible: true,
                   formItem: {
-                    visible: false
+                    visible: true
+                  }
+                },
+                {
+                  "dataField": "active",
+                  formItem: {
+                    editorOptions: { value: true }
                   }
                 },
                 {
@@ -144,6 +208,12 @@ cap.methods = {
                   "dataField": "workEmail"
                 },
                 {
+                  "dataField": "licenses",
+                  formItem: {
+                    editorOptions: { value: true }
+                  }
+                },
+                {
                   "dataField": "districtName"
                 },
                 {
@@ -157,12 +227,6 @@ cap.methods = {
                 },
                 {
                   "dataField": "externalId"
-                },
-                {
-                  "dataField": "active",
-                  formItem: {
-                    editorOptions: { value: false }
-                  }
                 },
                 {
                   "dataField": "supervisorId"
@@ -185,14 +249,9 @@ cap.methods = {
                 {
                   "dataField": "emailGroup"
                 },
-                {
-                  "dataField": "licenses",
-                  formItem:{
-                      editorOptions:{value:false}
-                  }
-                }
               ]
             },
+
           ).dxDataGrid('instance')
       await cap.methods.showContainer();
       return;
@@ -247,6 +306,25 @@ cap.methods = {
         var settings = {
           "url": `${_APIURL}${endpoint}/${data.inx}`,
           "method": "DELETE"
+        };
+
+        $.ajax(settings).done(function (response) {
+          resolve('success');
+        }).fail((err) => reject(err))
+
+      } catch (err) {
+        cap.events.onError(err);
+        reject(err);
+      }
+    })
+  },
+  put: (endpoint, data) => {
+    return new Promise((resolve, reject) => {
+      try {
+        var settings = {
+          "url": `${_APIURL}${endpoint}/${data.inx}`,
+          "method": "PUT",
+          "data": data,
         };
 
         $.ajax(settings).done(function (response) {
@@ -321,3 +399,6 @@ $(() => {
     cap.events.onError(err)
   }
 })
+
+
+
