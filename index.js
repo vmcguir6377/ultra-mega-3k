@@ -2,7 +2,7 @@
 References-
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
 */
-
+/*;*/
 //create variables in our namespace. always do this so you know what you are using later
 _APIURL = "http://10.0.0.16:8814/api/";
 cap = {
@@ -46,8 +46,31 @@ cap.methods = {
         $('<div>')
           .appendTo(cap.container)
           .dxDataGrid(
-
-        {
+            {
+              export: {
+                enabled: true
+              },
+              onExporting: function(e) { 
+                var workbook = new ExcelJS.Workbook(); 
+                var worksheet = workbook.addWorksheet('Main sheet'); 
+                DevExpress.excelExporter.exportDataGrid({ 
+                    worksheet: worksheet, 
+                    component: e.component,
+                    customizeCell: function(options) {
+                        var excelCell = options;
+                        excelCell.font = { name: 'Arial', size: 12 };
+                        excelCell.alignment = { horizontal: 'left' };
+                    } 
+                }).then(function() {
+                    workbook.xlsx.writeBuffer().then(function(buffer) { 
+                        saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'DataGrid.xlsx'); 
+                    }); 
+                }); 
+                e.cancel = true; 
+            },
+          
+        
+          
           columnHidingEnabled: true,
               editing: {
                 /*addRow() {
@@ -62,13 +85,49 @@ cap.methods = {
                 })
               },*/
                 /*editRowKey:'inx',*/
-                allowAdding: true,
+                allowExporting: false,
+                allowAdding: false,
                 mode: 'popup',
                 allowUpdating: true,
+                export: true,
                 allowDeleting: false,
                 useIcons: true,
-              },
 
+
+                 /* dxButton: {
+                  accessKey:undefined,
+                  activeStateEnabled:true,
+                  component:null,
+                  disabled:false,
+                  elementAttr:{},
+                  focusStateEnabled:true,
+                  height:undefined,
+                  hint:undefined,
+                  hoverStateEnabled:true,
+                  icon:"favorites",
+                  onClick:null,
+                  onContentReady:null,
+                  onDisposing:null,
+                  onInitialized:null,
+                  onOptionChanged:null,
+                  render:null,
+                  rtlEnabled:false,
+                  stylingMode:"contained",
+                  tabIndex:0,
+                  template:"content",
+                  text:"Add Employee",
+                  type:"normal",
+                  useSubmitBehavior:true,
+                  validationGroup:undefined,
+                  visible:true,
+                  width:120,
+                  },
+              },
+              $('#gridContainer').dxDataGrid({
+                export: {
+                    enabled: true
+                },*/
+                
               grouping: {
                 contextMenuEnabled: true
               },
@@ -82,7 +141,7 @@ cap.methods = {
               filterRow: {
                 visible: true
               },
-
+              
               function() {
                 $("#emailButton").dxButton({
                   icon: "email",
@@ -94,6 +153,19 @@ cap.methods = {
 
                 });
               },
+            },
+            
+              /*function() {
+                $("#addButton").dxButton({
+                
+                  text: "Add Employee",
+                  onClick: function () {
+                    "parent.location='mailto:vmcguire@unitedlocating.com'"
+                  },
+
+
+                });
+              },*/
               columnResizingMode: 'nextColumn',
               columnMinWidth: 50,
               columnAutoWidth: true,
@@ -132,14 +204,16 @@ cap.methods = {
                 {
                   "type": "buttons",
                   "width": 110,
-                  "buttons": ["edit", {
+                  "buttons": [
+                    
+                    "edit", {
                     hint: 'Email',
                     icon: 'email',
                   },
                     {
-                      hint: 'Archive',
+                      hint: 'Change Active Status',
                       icon: 'copy'
-
+//function: when you click this, true result for boolean active changes to false
                       /*visible(e) {//******this is the code for the archive function, not worked out yet**********************
                         return !e.row.isEditing;
                       },
@@ -161,6 +235,12 @@ cap.methods = {
                   visible: true,
                   formItem: {
                     visible: true
+                  }
+                },
+                {
+                  "dataField": "active",
+                  formItem: { 
+                  editorOptions: { value: true }
                   }
                 },
                 {
@@ -215,12 +295,6 @@ cap.methods = {
                   "dataField": "externalId"
                 },
                 {
-                  "dataField": "active",
-                  formItem: {
-                    editorOptions: { value: false }
-                  }
-                },
-                {
                   "dataField": "supervisorId"
                 },
                 {
@@ -244,13 +318,13 @@ cap.methods = {
                 {
                   "dataField": "licenses",
                   formItem: {
-                    editorOptions: { value: false }
+                    editorOptions: { value: true }
                   }
                 }
               ]
             },
 
-
+          
 
 
 
@@ -359,6 +433,7 @@ cap.methods = {
       }
     })
   },
+  
   //archive an entry:how do i grab an inx and send it out of this db and to a new one?? 
   /*archive: (endpoint, data) => {
     return new Promise((resolve, reject) => {
@@ -425,7 +500,17 @@ $(() => {
   }
 })
 
-$(function () {
+$(function()  {
+  $('#icon-done').dxButton({
+    icon: 'check',
+    type: 'success',
+    text: 'Done',
+    onClick() {
+      DevExpress.ui.notify('The Done button was clicked');
+    },
+  });
+},
+/*$(function () {
   $("#login").dxTextBox({
     name: "Login"
   }).dxValidator({
@@ -448,7 +533,7 @@ $(function () {
     type: "success",
     useSubmitBehavior: true
   });
-});
+}));
 
 $(() => {
   $('#custom-icon').dxSelectBox({
@@ -518,4 +603,4 @@ $(() => {
      },
    });
  });*/
-});
+)

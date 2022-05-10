@@ -107,6 +107,12 @@ cap.methods = {
                   }
                 },
                 {
+                  "dataField": "active",
+                  formItem: {
+                    editorOptions: { value: true }
+                  }
+                },
+                {
                   "dataField": "mdsUsername"
                 },
                 {
@@ -156,12 +162,6 @@ cap.methods = {
                 },
                 {
                   "dataField": "externalId"
-                },
-                {
-                  "dataField": "active",
-                  formItem: {
-                    editorOptions: { value: false }
-                  }
                 },
                 {
                   "dataField": "supervisorId"
