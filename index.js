@@ -14,7 +14,6 @@ cap = {
 
 }
 
-
 //now make your method and event properties within your namespace
 cap.methods = {
   pageLoad: async Parent => {
@@ -44,90 +43,10 @@ cap.methods = {
       //render a new gridview and assign the instance to the variable
       cap.employeeGrid =
         $('<div>')
+
           .appendTo(cap.container)
           .dxDataGrid(
             {
-              export: {
-                enabled: true
-              },
-              onExporting: function(e) { 
-                var workbook = new ExcelJS.Workbook(); 
-                var worksheet = workbook.addWorksheet('Main sheet'); 
-                DevExpress.excelExporter.exportDataGrid({ 
-                    worksheet: worksheet, 
-                    component: e.component,
-                    customizeCell: function(options) {
-                        var excelCell = options;
-                        excelCell.font = { name: 'Arial', size: 12 };
-                        excelCell.alignment = { horizontal: 'left' };
-                    } 
-                }).then(function() {
-                    workbook.xlsx.writeBuffer().then(function(buffer) { 
-                        saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'DataGrid.xlsx'); 
-                    }); 
-                }); 
-                e.cancel = true; 
-            },
-          
-        
-          
-          columnHidingEnabled: true,
-              editing: {
-                /*addRow() {
-                $('#success-contained').dxButton({
-                  stylingMode: 'contained',
-                  text: 'Contained',
-                  type: 'success',
-                  width: 120,
-                  onClick() {
-                    DevExpress.ui.notify('The Contained button was clicked');
-                  },
-                })
-              },*/
-                /*editRowKey:'inx',*/
-                allowExporting: false,
-                allowAdding: false,
-                mode: 'popup',
-                allowUpdating: true,
-                export: true,
-                allowDeleting: false,
-                useIcons: true,
-
-
-                 /* dxButton: {
-                  accessKey:undefined,
-                  activeStateEnabled:true,
-                  component:null,
-                  disabled:false,
-                  elementAttr:{},
-                  focusStateEnabled:true,
-                  height:undefined,
-                  hint:undefined,
-                  hoverStateEnabled:true,
-                  icon:"favorites",
-                  onClick:null,
-                  onContentReady:null,
-                  onDisposing:null,
-                  onInitialized:null,
-                  onOptionChanged:null,
-                  render:null,
-                  rtlEnabled:false,
-                  stylingMode:"contained",
-                  tabIndex:0,
-                  template:"content",
-                  text:"Add Employee",
-                  type:"normal",
-                  useSubmitBehavior:true,
-                  validationGroup:undefined,
-                  visible:true,
-                  width:120,
-                  },
-              },
-              $('#gridContainer').dxDataGrid({
-                export: {
-                    enabled: true
-                },*/
-                
               grouping: {
                 contextMenuEnabled: true
               },
@@ -135,48 +54,78 @@ cap.methods = {
                 visible: true,
                 allowColumnDragging: true,
               },
-              allowColumnResizing: true,
-              showBorders: true,
-              showDropDownButton: true,
-              filterRow: {
-                visible: true
-              },
               
-              function() {
-                $("#emailButton").dxButton({
-                  icon: "email",
-                  text: "Contact",
-                  onClick: function () {
-                    "parent.location='mailto:vmcguire@unitedlocating.com'"
-                  },
-
-
-                });
+             export: {
+                enabled: true
               },
-            },
-            
-              /*function() {
-                $("#addButton").dxButton({
-                
-                  text: "Add Employee",
-                  onClick: function () {
-                    "parent.location='mailto:vmcguire@unitedlocating.com'"
-                  },
-
-
+              onExporting: function (e) {
+                var workbook = new ExcelJS.Workbook();
+                var worksheet = workbook.addWorksheet('Main sheet');
+                DevExpress.excelExporter.exportDataGrid({
+                  worksheet: worksheet,
+                  component: e.component,
+                  customizeCell: function (options) {
+                    var excelCell = options;
+                    excelCell.font = { name: 'Arial', size: 12 };
+                    excelCell.alignment = { horizontal: 'left' };
+                  }
+                }).then(function () {
+                  workbook.xlsx.writeBuffer().then(function (buffer) {
+                    saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'DataGrid.xlsx');
+                  });
                 });
-              },*/
+                e.cancel = true;
+              },
+
+              columnHidingEnabled: true,
+              
+              editing: {
+                /*editRowKey:'inx',*/
+               
+                allowExporting: false,
+                allowAdding: true,
+                mode: 'popup',
+                allowUpdating: true,
+                export: true,
+                allowDeleting: false,
+                useIcons: true,
+                allowColumnResizing: true,
+                showBorders: true,
+                showDropDownButton: true,
+                filterRow: {
+                  visible: true
+                },
+
+                function() {
+                  $("#emailButton").dxButton({
+                    icon: "email",
+                    text: "Contact",
+                    onClick: function () {
+                      "parent.location='mailto:vmcguire@unitedlocating.com'"
+                    },
+                  });
+                },
+              },
+
               columnResizingMode: 'nextColumn',
               columnMinWidth: 50,
               columnAutoWidth: true,
               showBorders: true,
               /*keyExpr:'inx',*/
               scrolling: {
-                mode: 'virtual',
+                enabled: false
+              
               },
               paging: {
-                enabled: false,
+                  enabled:true,
+                  pageSize:5,
+                  pageIndex:0,
+                  showInfo: true,
+                  showNavigationButtons: true,
+                  showPageSizeSelector: true,
               },
+                  
+              
               dataSource: new DevExpress.data.CustomStore({
                 load: (opts) => {
                   return cap.methods.get("allEmployees");
@@ -205,29 +154,12 @@ cap.methods = {
                   "type": "buttons",
                   "width": 110,
                   "buttons": [
-                    
+
                     "edit", {
-                    hint: 'Email',
-                    icon: 'email',
-                  },
-                    {
-                      hint: 'Change Active Status',
-                      icon: 'copy'
-//function: when you click this, true result for boolean active changes to false
-                      /*visible(e) {//******this is the code for the archive function, not worked out yet**********************
-                        return !e.row.isEditing;
-                      },
-                      disabled(e) {
-                        return isChief(e.row.data.Position);
-                      },
-                      onClick(e) {
-                        const clonedItem = $.extend({}, e.row.data, { ID: maxID += 1 });
-            
-                        employees.splice(e.row.rowIndex, 0, clonedItem);
-                        e.component.refresh(true);
-                        e.event.preventDefault();
-                      },*/
-                    }],
+                      hint: 'Email',
+                      icon: 'email',
+                    },
+                  ],
                 },
 
                 {
@@ -239,8 +171,8 @@ cap.methods = {
                 },
                 {
                   "dataField": "active",
-                  formItem: { 
-                  editorOptions: { value: true }
+                  formItem: {
+                    editorOptions: { value: true }
                   }
                 },
                 {
@@ -280,6 +212,12 @@ cap.methods = {
                   "dataField": "workEmail"
                 },
                 {
+                  "dataField": "licenses",
+                  formItem: {
+                    editorOptions: { value: true }
+                  }
+                },
+                {
                   "dataField": "districtName"
                 },
                 {
@@ -315,20 +253,10 @@ cap.methods = {
                 {
                   "dataField": "emailGroup"
                 },
-                {
-                  "dataField": "licenses",
-                  formItem: {
-                    editorOptions: { value: true }
-                  }
-                }
               ]
             },
-
-          
-
-
-
-          ).dxDataGrid('instance')
+            
+            ).dxDataGrid('instance')
       await cap.methods.showContainer();
       return;
     }
@@ -433,30 +361,6 @@ cap.methods = {
       }
     })
   },
-  
-  //archive an entry:how do i grab an inx and send it out of this db and to a new one?? 
-  /*archive: (endpoint, data) => {
-    return new Promise((resolve, reject) => {
-      try {
-        var settings = {
-          "url": `${_APIURL}${endpoint}/${data.inx}`,
-          "method": "POST",POST to archiveData db
-          "data": data,
-        };
-        var settings = {
-          "url": `${_APIURL}${endpoint}`,
-          "method": "POST",
-          "data": data,
-        };
-        $.ajax(settings).done(function (response) {
-          resolve('success');
-        }).fail((err) => reject(err))
-      } catch (err) {
-        cap.events.onError(err);
-        reject(err);*/
-
-
-
   //get something from api
   get: endpoint => {
     return new Promise((resolve, reject) => {
@@ -500,107 +404,4 @@ $(() => {
   }
 })
 
-$(function()  {
-  $('#icon-done').dxButton({
-    icon: 'check',
-    type: 'success',
-    text: 'Done',
-    onClick() {
-      DevExpress.ui.notify('The Done button was clicked');
-    },
-  });
-},
-/*$(function () {
-  $("#login").dxTextBox({
-    name: "Login"
-  }).dxValidator({
-    validationRules: [
-      { type: "required" }
-    ]
-  });
 
-  $("#password").dxTextBox({
-    name: "Password",
-    mode: "password"
-  }).dxValidator({
-    validationRules: [
-      { type: "required" }
-    ]
-  });
-
-  $("#validateAndSubmit").dxButton({
-    text: "Submit",
-    type: "success",
-    useSubmitBehavior: true
-  });
-}));
-
-$(() => {
-  $('#custom-icon').dxSelectBox({
-    items: simpleProducts,
-    dropDownButtonTemplate() {
-      return $('<img>', {
-        src: './img/',
-        class: 'custom-icon',
-      });
-    },
-  });
-
-  /* const $loadIndicator = $('<div>').dxLoadIndicator({ visible: false });
-   const $dropDownButtonImage = $('<./img/triangle-down-256.webp.jpg>', {
-     src: 'images/icons/custom-dropbutton-icon.svg',
-     class: 'custom-icon',
-   });
- 
-   $('#load-indicator').dxSelectBox({
-     dropDownButtonTemplate(data, element) {
-       $(element).append($loadIndicator, $dropDownButtonImage);
-     },
-     dataSource: {
-       loadMode: 'raw',
-       load() {
-         const loadIndicator = $loadIndicator.dxLoadIndicator('instance');
-         const d = $.Deferred();
- 
-         $dropDownButtonImage.hide();
-         loadIndicator.option('visible', true);
- 
-         setTimeout(() => {
-           d.resolve(simpleProducts);
-           $dropDownButtonImage.show();
-           loadIndicator.option('visible', false);
-         }, 3000);
-         return d.promise();
-       },
-     },
-   });
- 
-   const dropDownButtonTemplate = function (selectedItem) {
-     if (selectedItem) {
-       return function () {
-         return $('<img>', {
-           src: `images/icons/${selectedItem.IconSrc}`,
-           class: 'custom-icon',
-         });
-       };
-     }
-     return 'dropDownButton';
-   };
- 
-   $('#dynamic-template').dxSelectBox({
-     items: products,
-     displayExpr: 'Name',
-     showClearButton: true,
-     valueExpr: 'ID',
-     value: 1,
-     itemTemplate(data) {
-       return `<div class='custom-item'><img src='images/icons/${
-         data.IconSrc}' /><div class='product-name'>${
-         data.Name}</div></div>`;
-     },
-     onSelectionChanged(e) {
-       e.component.option('dropDownButtonTemplate', dropDownButtonTemplate(e.selectedItem));
-     },
-   });
- });*/
-)
