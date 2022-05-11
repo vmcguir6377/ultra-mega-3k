@@ -8,6 +8,10 @@
     display: block;
     color: rgb(247, 240, 239);
   }
+ .dx-field-value {
+     color: white;
+      background-color: white;
+  }
 * {
     background-color:#423f4a;
 }
@@ -62,6 +66,12 @@ body {
     box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
 }
 
+.dx-field-label {
+    color: white;
+}
+.dx-field-value {
+    background-color: white;
+}
 .nav-container {
     display: flex;
     justify-content: space-between;
