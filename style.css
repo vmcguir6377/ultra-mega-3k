@@ -1,8 +1,19 @@
+#summary {
+    padding-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  #button {
+    display: block;
+    color: rgb(247, 240, 239);
+  }
 * {
-    background-color: #ff7944;
+    background-color: #9c9a9a;
 }
 a href {
-    color:#ff7944;
+    font-size: 20px;
+    color:#ffffff;
 }
 .dx-dropdowneditor-button .dx-button-content {
     text-align: center;
@@ -102,8 +113,8 @@ body {
     position: absolute;
     height: 26px;
     width: 32px;
-    top: 17px;
-    left: 20px;
+    top: 30px;
+    left: 30px;
     z-index: 2;
     display: flex;
     flex-direction: column;
@@ -224,7 +235,7 @@ input {
 h1 {
     text-align: center;
     font-size: 40px;
-    color: #09078d;
+    color: #efeff4;
     margin-bottom: 0px;
     margin-top: -38px;
 }
@@ -274,14 +285,14 @@ header {
 }
 
 .header-right ul li a {
-    color: #565A5C;
+    color: #9c9a9a;
     text-decoration: none;
 }
 
 .header-right ul li a.cta {
     padding: 10px 20px;
     color: white;
-    background: #E78D5C;
+    background: #9c9a9a;
 }
 
 .menu {
@@ -396,7 +407,7 @@ img {
 }
 
 :root {
-    --primary: #ff7944;
+    --primary: #5b5451;
     --secondary: #09078d;
     --tertiary: rgb(241, 247, 247);
     --grey: #333;
@@ -404,7 +415,7 @@ img {
 }
 
 body {
-    background: #ff7944;
+    background: #9c9a9a;
     color: var(--white);
     margin-bottom: 100;
     padding: 0;

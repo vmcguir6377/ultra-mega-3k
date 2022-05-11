@@ -3,6 +3,7 @@ References-
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
 */
 /*;*/
+
 //create variables in our namespace. always do this so you know what you are using later
 _APIURL = "http://10.0.0.16:8814/api/";
 cap = {
@@ -54,7 +55,7 @@ cap.methods = {
                 visible: true,
                 allowColumnDragging: true,
               },
-
+              
               export: {
                 enabled: true
               },
@@ -145,6 +146,7 @@ cap.methods = {
                 width: 240,
                 placeholder: "Search"
               },
+              
               columns: [
                 {
                   "type": "buttons",
