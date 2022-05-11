@@ -9,7 +9,7 @@
     color: rgb(247, 240, 239);
   }
 * {
-    background-color: #9c9a9a;
+    background-color:#423f4a;
 }
 a href {
     font-size: 20px;
@@ -69,18 +69,20 @@ body {
     height: 62px;
 }
 
-.navbar .menu-items {
-    display: flex;
+li {
+  
+    color:#efefef;
 }
 
 .navbar .nav-container li {
     list-style: none;
+    color: white;
 }
 
 
 .navbar .nav-container a {
     text-decoration: none;
-    color: #0e2431;
+    color: white;
     font-weight: 500;
     font-size: 1.2rem;
     padding: 0.7rem;
@@ -126,7 +128,7 @@ body {
     height: 4px;
     width: 100%;
     border-radius: 10px;
-    background: #0e2431;
+    background: white;
 }
 
 .nav-container .hamburger-lines .line1 {
@@ -292,7 +294,7 @@ header {
 .header-right ul li a.cta {
     padding: 10px 20px;
     color: white;
-    background: #9c9a9a;
+    background: #423f4a;
 }
 
 .menu {
@@ -305,7 +307,7 @@ header {
     height: 100%;
     min-width: 100vw;
     min-height: 100vh;
-    background: #2B3F58;
+    background: #423f4a;
 }
 
 .menu ul {
@@ -315,6 +317,7 @@ header {
     justify-content: space-around;
     align-items: flex-start;
     list-style: none;
+    color: white;
 }
 
 .menu ul li a {
@@ -356,7 +359,7 @@ header {
 h1 {
     text-align: center;
     font-size: 55px;
-    color: #09078d;
+    color: #3f3db7;
     margin-top: 0px;
 }
 
@@ -369,20 +372,23 @@ h2 {
 
 a href {
     text-align: center;
+    color: white;
     font-size: 24px;
     font-weight: 500;
 }
 
 article {
+    color: white;
     margin-left: 75px;
     margin-bottom: -5px;
 }
 
 article3 {
+    color: white;
     margin-left: 105px;
     margin-bottom: 15px;
     margin-top: 10px;
-    margin-right: 55px;
+    margin-right: 75px;
 }
 
 container {
@@ -415,7 +421,7 @@ img {
 }
 
 body {
-    background: #9c9a9a;
+    background: #423f4a;
     color: var(--white);
     margin-bottom: 100;
     padding: 0;
