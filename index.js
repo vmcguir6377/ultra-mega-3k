@@ -3,7 +3,12 @@ References-
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
 */
 /*;*/
-
+handleToolbarPreparing = (e) => {  
+  let toolbarItems = e.toolbarOptions.items;  
+  let addRowButton = toolbarItems.find(x => x.name === "addRowButton");  
+addRowButton.options.text = "Add Custom Thing";  
+addRowButton.showText = "always";  
+}  
 //create variables in our namespace. always do this so you know what you are using later
 _APIURL = "http://10.0.0.16:8814/api/";
 cap = {
@@ -41,12 +46,16 @@ cap.methods = {
         cap.employeeGrid.element().remove();
       }
       cap.methods.emptyContainer();
+
+
+      
       //render a new gridview and assign the instance to the variable
       cap.employeeGrid =
         $('<div>')
 
           .appendTo(cap.container)
           .dxDataGrid(
+        
             {
               grouping: {
                 contextMenuEnabled: true
@@ -55,7 +64,12 @@ cap.methods = {
                 visible: true,
                 allowColumnDragging: true,
               },
-              
+              searchPanel: {
+                visible: true,
+                width: 240,
+                placeholder: "Search"
+              },
+            
               export: {
                 enabled: true
               },
@@ -77,8 +91,8 @@ cap.methods = {
                 });
                 e.cancel = true;
               },
-
-              columnHidingEnabled: true,
+           
+                  columnHidingEnabled: true,
               editing: {
                 /*editRowKey:'inx',*/
                 allowExporting: false,
@@ -94,7 +108,7 @@ cap.methods = {
                 filterRow: {
                   visible: true
                 },
-
+              
                 function() {
                   $("#emailButton").dxButton({
                     icon: "email",
@@ -105,7 +119,7 @@ cap.methods = {
                   });
                 },
               },
-
+             
               columnResizingMode: 'nextColumn',
               columnMinWidth: 50,
               columnAutoWidth: true,
@@ -116,13 +130,29 @@ cap.methods = {
               },
               paging: {
                 enabled: true,
-                pageSize: 5,
+                pageSize: 10,
                 pageIndex: 0,
                 showInfo: true,
                 showNavigationButtons: true,
                 showPageSizeSelector: true,
               },
-              
+              //this works as an in grid add employee button but it deletes the search, export, and group/sort functions and icons.
+              /*toolbar: { 
+                items: [
+                  {
+                    widget: 'dxButton',
+            options: {
+            text: 'Add Employee',
+            width: 136,
+           onClick: function () {  
+       $("#employeeGrid").dxDataGrid('instance').addRow();  
+    }  
+},
+            },
+            
+            ],
+            },*/
+            
               dataSource: new DevExpress.data.CustomStore({
                 load: (opts) => {
                   return cap.methods.get("allEmployees");
@@ -141,13 +171,44 @@ cap.methods = {
                 },
               }),
 
-              searchPanel: {
-                visible: true,
-                width: 240,
-                placeholder: "Search"
-              },
+
+              /*function() {
+                  $("#emailButton").dxButton({
+                    icon: "email",
+                    text: "Contact",
+                    onClick: function () {
+                      "parent.location='mailto:vmcguire@unitedlocating.com'"
+                    },
+                  });
+                },
+              },*/
+              function() {
+                $("#checked").dxCheckBox({
+                  value: true,
+                });
               
-              columns: [
+                $('#unchecked').dxCheckBox({
+                  value: false,
+                });
+              
+                $('#indeterminate').dxCheckBox({
+                  value: null,
+                });
+              
+                $('#handler').dxCheckBox({
+                  value: null,
+                  onValueChanged(data) {
+                    disabledCheckbox.option('value', data.value);
+                  },
+                });
+              
+                const disabledCheckbox = $('#disabled').dxCheckBox({
+                  value: null,
+                  disabled: true,
+                }).dxCheckBox('instance')
+              },
+                columns: [
+             
                 {
                   "type": "buttons",
                   "width": 110,
@@ -157,10 +218,9 @@ cap.methods = {
                       hint: 'Email',
                       icon: 'email',
                     },
+                   
                   ],
-                },
 
-                {
                   "dataField": "inx",
                   visible: true,
                   formItem: {
@@ -170,7 +230,7 @@ cap.methods = {
                 {
                   "dataField": "active",
                   formItem: {
-                    editorOptions: { value: true }
+                    editorOptions: { value: false },
                   }
                 },
                 {
@@ -212,7 +272,7 @@ cap.methods = {
                 {
                   "dataField": "licenses",
                   formItem: {
-                    editorOptions: { value: true }
+                    editorOptions: { value: false }
                   }
                 },
                 {
@@ -253,7 +313,7 @@ cap.methods = {
                 },
               ]
             },
-
+          
           ).dxDataGrid('instance')
       await cap.methods.showContainer();
       return;
@@ -276,6 +336,7 @@ cap.methods = {
       }
     })
   },
+
   //clear all contents in our container
   emptyContainer: () => {
     try {
@@ -401,5 +462,6 @@ $(() => {
     cap.events.onError(err)
   }
 })
+
 
 
