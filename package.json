@@ -22,6 +22,7 @@
     "filesaver": "^0.0.13",
     "jquery": "^3.6.0",
     "node-red": "^2.2.2",
+    "node-red-node-email": "^1.15.1",
     "vue": "^3.2.31"
   }
 }
