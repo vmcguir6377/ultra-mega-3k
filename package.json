@@ -18,10 +18,12 @@
   "homepage": "https://github.com/vmcguir6377/ultra-mega-3k#readme",
   "dependencies": {
     "axios": "^0.27.2",
+    "bootstrap": "^5.2.0-beta1",
     "exceljs": "^4.3.0",
     "filesaver": "^0.0.13",
     "jquery": "^3.6.0",
     "node-red": "^2.2.2",
+    "node-red-contrib-sms-twilio": "^0.0.2",
     "node-red-node-email": "^1.15.1",
     "vue": "^3.2.31"
   }

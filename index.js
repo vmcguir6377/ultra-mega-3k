@@ -24,7 +24,7 @@ cap = {
 cap.methods = {
   pageLoad: async Parent => {
     try {
-      //parent varialbe is what control we shall use as our wrapper for our container
+      //parent variable is what control we shall use as our wrapper for our container
       cap.parent = $(Parent)
       //define our container and add it to the parent
       cap.container = $('<div>').appendTo(cap.parent)
@@ -93,14 +93,14 @@ cap.methods = {
               },
            
                   columnHidingEnabled: true,
-              editing: {
+                editing: {
                 /*editRowKey:'inx',*/
                 allowExporting: false,
                 allowAdding: true,
                 mode: 'popup',
                 allowUpdating: true,
                 export: true,
-                allowDeleting: false,
+                allowDeleting: true,
                 useIcons: true,
                 allowColumnResizing: true,
                 showBorders: true,
@@ -171,17 +171,6 @@ cap.methods = {
                 },
               }),
 
-
-              /*function() {
-                  $("#emailButton").dxButton({
-                    icon: "email",
-                    text: "Contact",
-                    onClick: function () {
-                      "parent.location='mailto:vmcguire@unitedlocating.com'"
-                    },
-                  });
-                },
-              },*/
               function() {
                 $("#checked").dxCheckBox({
                   value: true,
@@ -210,16 +199,16 @@ cap.methods = {
                 columns: [
              
                 {
-                  "type": "buttons",
+                  /*"type": "buttons",
                   "width": 110,
                   "buttons": [
 
                     "edit", {
-                      hint: 'Email',
-                      icon: 'email',
+                      hint: 'Delete',
+                      icon: 'delete',
                     },
                    
-                  ],
+                  ],*/
 
                   "dataField": "inx",
                   visible: true,
@@ -230,7 +219,7 @@ cap.methods = {
                 {
                   "dataField": "active",
                   formItem: {
-                    editorOptions: { value: false },
+                    editorOptions: { value: true },
                   }
                 },
                 {
