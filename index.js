@@ -3,12 +3,6 @@ References-
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
 */
 /*;*/
-handleToolbarPreparing = (e) => {  
-  let toolbarItems = e.toolbarOptions.items;  
-  let addRowButton = toolbarItems.find(x => x.name === "addRowButton");  
-addRowButton.options.text = "Add Custom Thing";  
-addRowButton.showText = "always";  
-}  
 //create variables in our namespace. always do this so you know what you are using later
 _APIURL = "http://10.0.0.16:8814/api/";
 cap = {
@@ -46,10 +40,7 @@ cap.methods = {
         cap.employeeGrid.element().remove();
       }
       cap.methods.emptyContainer();
-
-
-      
-      //render a new gridview and assign the instance to the variable
+       //render a new gridview and assign the instance to the variable
       cap.employeeGrid =
         $('<div>')
 
@@ -57,6 +48,7 @@ cap.methods = {
           .dxDataGrid(
         
             {
+              
               grouping: {
                 contextMenuEnabled: true
               },
@@ -75,7 +67,7 @@ cap.methods = {
               },
               onExporting: function (e) {
                 var workbook = new ExcelJS.Workbook();
-                var worksheet = workbook.addWorksheet('Main sheet');
+                var worksheet = workbook.addWorksheet('Employee Data');
                 DevExpress.excelExporter.exportDataGrid({
                   worksheet: worksheet,
                   component: e.component,
@@ -131,14 +123,15 @@ cap.methods = {
               scrolling: {
                 enabled: false
               },
-              paging: {
-                enabled: true,
-                pageSize: 10,
-                pageIndex: 0,
+              pager: {
+                visible: true,
+                allowedPageSizes: [5, 20, 50, 100, 'all'],
+                showPageSizeSelector: true,
                 showInfo: true,
                 showNavigationButtons: true,
-                showPageSizeSelector: true,
+               
               },
+           
               //this works as an in grid add employee button but it deletes the search, export, and group/sort functions and icons.
               /*toolbar: { 
                 items: [
@@ -174,7 +167,7 @@ cap.methods = {
                 },
               }),
 
-              function() {
+              /*function() {
                 $("#checked").dxCheckBox({
                   value: true,
                 });
@@ -198,7 +191,7 @@ cap.methods = {
                   value: null,
                   disabled: true,
                 }).dxCheckBox('instance')
-              },
+              },*/
                 columns: [
              
                 {
@@ -220,9 +213,12 @@ cap.methods = {
                   }
                 },
                 {
+                  //for this and the license bit type field, there are a lot of bugs. If you leave this form item entry, you have to 
+                  //uncheck the active box to get the insert route to work. If i made it a default of false, I'd have to check it to 
+                  //get the route to work. if you take out the form item altogether, you cannot change the box status.
                   "dataField": "active",
                   formItem: {
-                    editorOptions: { value: true },
+                    editorOptions: { value: false },
                   }
                 },
                 {
@@ -264,7 +260,7 @@ cap.methods = {
                 {
                   "dataField": "licenses",
                   formItem: {
-                    editorOptions: { value: false }
+                    editorOptions: { value: false },
                   }
                 },
                 {
@@ -302,6 +298,42 @@ cap.methods = {
                 },
                 {
                   "dataField": "emailGroup"
+                },
+                {
+                  "dataField": "ADP",
+                  formItem: {
+                    editorOptions: { value: true },
+                  }
+                },
+                {
+                  "dataField": "OQ",
+                  formItem: {
+                    editorOptions: { value: true },
+                  }
+                },
+                {
+                  "dataField": "Asset",
+                  formItem: {
+                    editorOptions: { value: true },
+                  }
+                },
+                {
+                  "dataField": "GPS",
+                  formItem: {
+                    editorOptions: { value: true },
+                  }
+                },
+                {
+                  "dataField": "WEX",
+                  formItem: {
+                    editorOptions: { value: true },
+                  }
+                },
+                {
+                  "dataField": "MDS",
+                  formItem: {
+                    editorOptions: { value: true },
+                  }
                 },
               ]
             },

@@ -44,38 +44,44 @@ cap.methods = {
       cap.employeeGrid =
         $('<div>')
 
-          .appendTo(cap.container)
-          .dxDataGrid(
-            {
-              grouping: {
-                contextMenuEnabled: true
-              },
-              groupPanel: {
-                visible: true,
-                allowColumnDragging: true,
-              },
-
-              export: {
-                enabled: true
-              },
-              onExporting: function (e) {
-                var workbook = new ExcelJS.Workbook();
-                var worksheet = workbook.addWorksheet('Main sheet');
-                DevExpress.excelExporter.exportDataGrid({
-                  worksheet: worksheet,
-                  component: e.component,
-                  customizeCell: function (options) {
-                    var excelCell = options;
-                    excelCell.font = { name: 'Arial', size: 12 };
-                    excelCell.alignment = { horizontal: 'left' };
-                  }
-                }).then(function () {
-                  workbook.xlsx.writeBuffer().then(function (buffer) {
-                    saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'DataGrid.xlsx');
-                  });
+        .appendTo(cap.container)
+        .dxDataGrid(
+      
+          {
+            grouping: {
+              contextMenuEnabled: true
+            },
+            groupPanel: {
+              visible: true,
+              allowColumnDragging: true,
+            },
+            searchPanel: {
+              visible: true,
+              width: 240,
+              placeholder: "Search"
+            },
+          
+            export: {
+              enabled: true
+            },
+            onExporting: function (e) {
+              var workbook = new ExcelJS.Workbook();
+              var worksheet = workbook.addWorksheet('Employee Contact Data');
+              DevExpress.excelExporter.exportDataGrid({
+                worksheet: worksheet,
+                component: e.component,
+                customizeCell: function (options) {
+                  var excelCell = options;
+                  excelCell.font = { name: 'Arial', size: 12 };
+                  excelCell.alignment = { horizontal: 'left' };
+                }
+              }).then(function () {
+                workbook.xlsx.writeBuffer().then(function (buffer) {
+                  saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'DataGrid.xlsx');
                 });
-                e.cancel = true;
-              },
+              });
+              e.cancel = true;
+            },
 
               columnHidingEnabled: true,
               editing: {
@@ -106,6 +112,9 @@ cap.methods = {
               },
 
               columnResizingMode: 'nextColumn',
+              columnChooser: {
+                enabled: true,
+              },
               columnMinWidth: 50,
               columnAutoWidth: true,
               showBorders: true,
@@ -113,13 +122,13 @@ cap.methods = {
               scrolling: {
                 enabled: false
               },
-              paging: {
-                enabled: true,
-                pageSize: 5,
-                pageIndex: 0,
+              pager: {
+                visible: true,
+                allowedPageSizes: [5, 20, 50, 100, 'all'],
+                showPageSizeSelector: true,
                 showInfo: true,
                 showNavigationButtons: true,
-                showPageSizeSelector: true,
+               
               },
               
               dataSource: new DevExpress.data.CustomStore({
@@ -140,42 +149,41 @@ cap.methods = {
                 },
               }),
 
-              searchPanel: {
-                visible: true,
-                width: 240,
-                placeholder: "Search"
-              },
+            
               columns: [
                 {
-                  "type": "buttons",
+                  /*"type": "buttons",
                   "width": 110,
                   "buttons": [
 
                     "edit", {
-                      hint: 'Email',
-                      icon: 'email',
+                      hint: 'Delete',
+                      icon: 'delete',
                     },
-                  ],
-                },
+                   
+                  ],*/
 
-                {
+                
                   "dataField": "inx",
-                  visible: true,
+                  visible: false,
                   formItem: {
-                    visible: true
+                    visible: false
                   }
                 },
                 {
                   "dataField": "active",
+                  visible: false,
                   formItem: {
                     editorOptions: { value: true }
                   }
                 },
                 {
-                  "dataField": "mdsUsername"
+                  "dataField": "mdsUsername",
+                  visible: false,
                 },
                 {
-                  "dataField": "mdsPassword"
+                  "dataField": "mdsPassword",
+                  visible: false,
                 },
                 {
                   "dataField": "firstName"
@@ -184,16 +192,20 @@ cap.methods = {
                   "dataField": "lastName"
                 },
                 {
-                  "dataField": "address"
+                  "dataField": "address",
+                  visible: false,
                 },
                 {
-                  "dataField": "city"
+                  "dataField": "city",
+                  visible: false,
                 },
                 {
-                  "dataField": "state"
+                  "dataField": "state",
+                  visible: false,
                 },
                 {
-                  "dataField": "zip"
+                  "dataField": "zip",
+                  visible: false,
                 },
                 {
                   "dataField": "phone"
@@ -209,6 +221,7 @@ cap.methods = {
                 },
                 {
                   "dataField": "licenses",
+                  visible: false,
                   formItem: {
                     editorOptions: { value: true }
                   }
@@ -223,34 +236,85 @@ cap.methods = {
                   "dataField": "role"
                 },
                 {
-                  "dataField": "mdsEid"
+                  "dataField": "mdsEid",
+                  visible: false,
                 },
                 {
-                  "dataField": "externalId"
+                  "dataField": "externalId",
+                  visible: false,
                 },
                 {
-                  "dataField": "supervisorId"
+                  "dataField": "supervisorId",
+                  visible: false,
                 },
                 {
-                  "dataField": "clearanceLevel"
+                  "dataField": "clearanceLevel",
+                  visible: false,
                 },
                 {
-                  "dataField": "dateAdded"
+                  "dataField": "dateAdded",
+                  visible: false,
                 },
                 {
-                  "dataField": "payType"
+                  "dataField": "payType",
+                  visible: false,
                 },
                 {
-                  "dataField": "payTier"
+                  "dataField": "payTier",
+                  visible: false,
                 },
                 {
-                  "dataField": "payTierMultiplier"
+                  "dataField": "payTierMultiplier",
+                  visible: false,
                 },
                 {
-                  "dataField": "emailGroup"
+                  "dataField": "emailGroup",
+                  visible: false,
                 },
-              ]
-            },
+                {
+                  "dataField": "ADP",
+                  visible: false,
+                    formItem: {
+                      editorOptions: { value: true },
+                    }
+                  },
+                  {
+                    "dataField": "OQ",
+                    visible: false,
+                    formItem: {
+                      editorOptions: { value: true },
+                    }
+                  },
+                  {
+                    "dataField": "Asset",
+                    visible: false,
+                    formItem: {
+                      editorOptions: { value: true },
+                    }
+                  },
+                  {
+                    "dataField": "GPS",
+                    visible: false,
+                    formItem: {
+                      editorOptions: { value: true },
+                    }
+                  },
+                  {
+                    "dataField": "WEX",
+                    visible: false,
+                    formItem: {
+                      editorOptions: { value: true },
+                    }
+                  },
+                  {
+                    "dataField": "MDS",
+                    visible: false,
+                    formItem: {
+                      editorOptions: { value: true },
+                    }
+                  },
+                ],
+              },
 
           ).dxDataGrid('instance')
       await cap.methods.showContainer();

@@ -94,7 +94,7 @@ cap.methods = {
                   visible: true
                 },
 
-                function() {
+                /*function() {
                   $("#emailButton").dxButton({
                     icon: "email",
                     text: "Contact",
@@ -102,10 +102,13 @@ cap.methods = {
                       "parent.location='mailto:vmcguire@unitedlocating.com'"
                     },
                   });
-                },
+                },*/
               },
 
               columnResizingMode: 'nextColumn',
+              columnChooser: {
+                enabled: true,
+              },
               columnMinWidth: 50,
               columnAutoWidth: true,
               showBorders: true,
@@ -113,13 +116,13 @@ cap.methods = {
               scrolling: {
                 enabled: false
               },
-              paging: {
-                enabled: true,
-                pageSize: 5,
-                pageIndex: 0,
+              pager: {
+                visible: true,
+                allowedPageSizes: [5, 20, 50, 100, 'all'],
+                showPageSizeSelector: true,
                 showInfo: true,
                 showNavigationButtons: true,
-                showPageSizeSelector: true,
+               
               },
               
               dataSource: new DevExpress.data.CustomStore({
@@ -151,31 +154,35 @@ cap.methods = {
                   "width": 110,
                   "buttons": [
 
-                    "edit", {
+                    /*"edit", {
                       hint: 'Email',
                       icon: 'email',
-                    },
+                    },*/
                   ],
                 },
 
+               
                 {
                   "dataField": "inx",
-                  visible: true,
+                  visible: false,
                   formItem: {
-                    visible: true
+                    visible: false
                   }
                 },
                 {
                   "dataField": "active",
+                  visible: false,
                   formItem: {
                     editorOptions: { value: true }
                   }
                 },
                 {
-                  "dataField": "mdsUsername"
+                  "dataField": "mdsUsername",
+                  visible: false,
                 },
                 {
-                  "dataField": "mdsPassword"
+                  "dataField": "mdsPassword",
+                  visible: false,
                 },
                 {
                   "dataField": "firstName"
@@ -184,16 +191,20 @@ cap.methods = {
                   "dataField": "lastName"
                 },
                 {
-                  "dataField": "address"
+                  "dataField": "address",
+                  visible: false,
                 },
                 {
-                  "dataField": "city"
+                  "dataField": "city",
+                  visible: false,
                 },
                 {
-                  "dataField": "state"
+                  "dataField": "state",
+                  visible: false,
                 },
                 {
-                  "dataField": "zip"
+                  "dataField": "zip",
+                  visible: false,
                 },
                 {
                   "dataField": "phone"
@@ -209,6 +220,7 @@ cap.methods = {
                 },
                 {
                   "dataField": "licenses",
+                  visible: false,
                   formItem: {
                     editorOptions: { value: true }
                   }
@@ -223,35 +235,85 @@ cap.methods = {
                   "dataField": "role"
                 },
                 {
-                  "dataField": "mdsEid"
+                  "dataField": "mdsEid",
+                  visible: false,
                 },
                 {
-                  "dataField": "externalId"
+                  "dataField": "externalId",
+                  visible: false,
                 },
                 {
-                  "dataField": "supervisorId"
+                  "dataField": "supervisorId",
+                  visible: false,
                 },
                 {
-                  "dataField": "clearanceLevel"
+                  "dataField": "clearanceLevel",
+                  visible: false,
                 },
                 {
-                  "dataField": "dateAdded"
+                  "dataField": "dateAdded",
+                  visible: false,
                 },
                 {
-                  "dataField": "payType"
+                  "dataField": "payType",
+                  visible: false,
                 },
                 {
-                  "dataField": "payTier"
+                  "dataField": "payTier",
+                  visible: false,
                 },
                 {
-                  "dataField": "payTierMultiplier"
+                  "dataField": "payTierMultiplier",
+                  visible: false,
                 },
                 {
-                  "dataField": "emailGroup"
+                  "dataField": "emailGroup",
+                  visible: false,
                 },
-              ]
-            },
-
+                {
+                  "dataField": "ADP",
+                  visible: false,
+                    formItem: {
+                      editorOptions: { value: true },
+                    }
+                  },
+                  {
+                    "dataField": "OQ",
+                    visible: false,
+                    formItem: {
+                      editorOptions: { value: true },
+                    }
+                  },
+                  {
+                    "dataField": "Asset",
+                    visible: false,
+                    formItem: {
+                      editorOptions: { value: true },
+                    }
+                  },
+                  {
+                    "dataField": "GPS",
+                    visible: false,
+                    formItem: {
+                      editorOptions: { value: true },
+                    }
+                  },
+                  {
+                    "dataField": "WEX",
+                    visible: false,
+                    formItem: {
+                      editorOptions: { value: true },
+                    }
+                  },
+                  {
+                    "dataField": "MDS",
+                    visible: false,
+                    formItem: {
+                      editorOptions: { value: true },
+                    }
+                  },
+                ],
+              },
           ).dxDataGrid('instance')
       await cap.methods.showContainer();
       return;
