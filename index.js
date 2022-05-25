@@ -166,7 +166,7 @@ cap.methods = {
                 },
                 remove: (data, info) => {
                   debugger
-                  return cap.methods.delete(`allEmployees`, data);
+                  return cap.methods.delete(`allEmployees`,Object.assign({}, data, info));
                 },
                 insert: (data, info) => {
                   debugger
