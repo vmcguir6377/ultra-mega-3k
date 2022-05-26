@@ -25,6 +25,7 @@
     "node-red": "^2.2.2",
     "node-red-contrib-sms-twilio": "^0.0.2",
     "node-red-node-email": "^1.15.1",
-    "vue": "^3.2.31"
+    "vue": "^3.2.31",
+    "vue-router": "^4.0.15"
   }
 }

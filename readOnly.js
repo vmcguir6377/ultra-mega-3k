@@ -107,7 +107,7 @@ cap.methods = {
 
               columnResizingMode: 'nextColumn',
               columnChooser: {
-                enabled: true,
+                enabled: false   ,
               },
               columnMinWidth: 50,
               columnAutoWidth: true,

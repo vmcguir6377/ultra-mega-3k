@@ -1,4 +1,53 @@
-$(() => {
+
+
+
+
+
+/*export function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export function validateEmail(email) {
+  var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+/*var user = {
+  validateCredentials: function (username, password) {
+return (
+  (!(username += '') || username === '') ? { error: "No Username Given.", field: 'name' }
+: (!(username += '') || password === '') ? { error: "No Password Given.", field: 'pass' }
+: (username.length < 3)                  ? { error: "Username is less than 3 Characters.", field: 'name' }
+: (password.length < 4)                  ? { error: "Password is less than 4 Characters.", field: 'pass' }
+: (!/^([a-z0-9-_]+)$/i.test(username))   ? { error: "Username contains invalid characters.", field: 'name' }
+: false
+);
+  }
+};
+
+var results = user.validateCredentials('vmcguire', 'somepassword');
+console.log(results);
+
+
+/*function ValidateEmail(inputText)
+{
+var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+if(inputText.value.match(mailformat))
+{
+alert("Valid email address!");
+document.form1.text1.focus();
+return true;
+}
+else
+{
+alert("You have entered an invalid email address!");
+document.form1.text1.focus();
+return false;
+}
+}*/
+
+
+
+/*$(() => {
   const maxDate = new Date();
 
   maxDate.setFullYear(maxDate.getFullYear() - 21);
@@ -61,7 +110,7 @@ $(() => {
   });
 
   $('#name-validation').dxTextBox({
-    value: 'Peter',
+    value: '',
   }).dxValidator({
     validationRules: [{
       type: 'required',
@@ -165,4 +214,4 @@ $(() => {
     type: 'success',
     useSubmitBehavior: true,
   });
-});
+});*/
