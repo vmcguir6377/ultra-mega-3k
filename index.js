@@ -222,6 +222,12 @@ cap.methods = {
                   }
                 },
                 {
+                  "dataField": "licenses",
+                  formItem: {
+                    editorOptions: { value: false },
+                  }
+                },
+                {
                   "dataField": "mdsUsername"
                 },
                 {
@@ -252,22 +258,16 @@ cap.methods = {
                   "dataField": "workPhone"
                 },
                 {
-                  "dataField": "email"
-                },
-                {
                   "dataField": "workEmail"
                 },
                 {
-                  "dataField": "licenses",
-                  formItem: {
-                    editorOptions: { value: false },
-                  }
+                  "dataField": "regionName"
                 },
                 {
                   "dataField": "districtName"
                 },
                 {
-                  "dataField": "regionName"
+                  "dataField": "email"
                 },
                 {
                   "dataField": "role"
@@ -412,6 +412,7 @@ cap.methods = {
           "url": `${_APIURL}${endpoint}/${data.inx}`,
           "method": "PUT",
           "data": data,
+          sendEmail
         };
 
         $.ajax(settings).done(function (response) {
@@ -433,7 +434,7 @@ cap.methods = {
           "method": "POST",
           "data": data,
         };
-
+       
         $.ajax(settings).done(function (response) {
           resolve('success');
         }).fail((err) => reject(err))
@@ -443,6 +444,7 @@ cap.methods = {
         reject(err);
       }
     })
+   
   },
   //get something from api
   get: endpoint => {
@@ -450,8 +452,24 @@ cap.methods = {
       $.get(`${_APIURL}${endpoint}`)
         .then((res) => { resolve(res) })
         .catch((err) => { reject(err) })
+        sendEmail;
     });
   }
+}
+ 
+function sendEmail() {
+  Email.send({
+    Host: "mail.unitedlocating.net",
+    Username: "contactmanager@unitedlocating.net",
+    Password: "P@ssw0rd381047@!",
+    To: 'vmcguire@unitedlocating.com',
+    From: "sender@email_address.com",
+    Subject: "Sending Email using javascript",
+    Body: "Well that was easy!!",
+  })
+    .then(function (message) {
+      alert("mail sent successfully")
+    });
 }
 cap.events = {
 
