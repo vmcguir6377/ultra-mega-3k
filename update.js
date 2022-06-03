@@ -174,17 +174,24 @@ cap.methods = {
                   "dataField": "active",
                   visible: false,
                   formItem: {
-                    editorOptions: { value: true }
-                  }
+                    visible: false
+                  } 
                 },
                 {
                   "dataField": "mdsUsername",
                   visible: false,
+                  formItem: {
+                    visible: false
+                  } 
                 },
                 {
                   "dataField": "mdsPassword",
                   visible: false,
-                },
+                    formItem: {
+                      visible: false
+                    } 
+                  },
+                
                 {
                   "dataField": "firstName"
                 },
@@ -223,8 +230,8 @@ cap.methods = {
                   "dataField": "licenses",
                   visible: false,
                   formItem: {
-                    editorOptions: { value: true }
-                  }
+                    visible: false
+                  } 
                 },
                 {
                   "dataField": "districtName"
@@ -235,7 +242,7 @@ cap.methods = {
                 {
                   "dataField": "role"
                 },
-                {
+                /*{
                   "dataField": "mdsEid",
                   visible: false,
                 },
@@ -275,44 +282,44 @@ cap.methods = {
                   "dataField": "ADP",
                   visible: false,
                     formItem: {
-                      editorOptions: { value: true },
+                      editorOptions: { value: false },
                     }
                   },
                   {
                     "dataField": "OQ",
                     visible: false,
                     formItem: {
-                      editorOptions: { value: true },
+                      editorOptions: { value: false },
                     }
                   },
                   {
                     "dataField": "Asset",
                     visible: false,
                     formItem: {
-                      editorOptions: { value: true },
+                      editorOptions: { value: false },
                     }
                   },
                   {
                     "dataField": "GPS",
                     visible: false,
                     formItem: {
-                      editorOptions: { value: true },
+                      editorOptions: { value:false },
                     }
                   },
                   {
                     "dataField": "WEX",
                     visible: false,
                     formItem: {
-                      editorOptions: { value: true },
+                      editorOptions: { value: false },
                     }
                   },
                   {
                     "dataField": "MDS",
                     visible: false,
                     formItem: {
-                      editorOptions: { value: true },
+                      editorOptions: { value: false },
                     }
-                  },
+                  },*/
                 ],
               },
 
