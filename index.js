@@ -48,7 +48,6 @@ cap.methods = {
           .dxDataGrid(
         
             {
-              
               grouping: {
                 contextMenuEnabled: true
               },
@@ -61,7 +60,6 @@ cap.methods = {
                 width: 240,
                 placeholder: "Search"
               },
-            
               export: {
                 enabled: true
               },
@@ -84,7 +82,7 @@ cap.methods = {
                 e.cancel = true;
               },
            
-                  columnHidingEnabled: true,
+                columnHidingEnabled: true,
                 editing: {
                 /*editRowKey:'inx',*/
                 allowExporting: false,
@@ -193,7 +191,6 @@ cap.methods = {
                 }).dxCheckBox('instance')
               },*/
                 columns: [
-             
                 {
                   /*"type": "buttons",
                   "width": 110,
@@ -212,21 +209,11 @@ cap.methods = {
                     visible: true
                   }
                 },
-                {
+                
                   //for this and the license bit type field, there are a lot of bugs. If you leave this form item entry, you have to 
                   //uncheck the active box to get the insert route to work. If i made it a default of false, I'd have to check it to 
                   //get the route to work. if you take out the form item altogether, you cannot change the box status.
-                  "dataField": "active",
-                  formItem: {
-                    editorOptions: { value: false },
-                  }
-                },
-                {
-                  "dataField": "licenses",
-                  formItem: {
-                    editorOptions: { value: false },
-                  }
-                },
+                
                 {
                   "dataField": "mdsUsername"
                 },
@@ -272,6 +259,19 @@ cap.methods = {
                 {
                   "dataField": "role"
                 },
+                {
+                "dataField": "active",
+                formItem: {
+                  editorOptions: { value: false },
+                },
+              },
+              {
+                "dataField": "licenses",
+                formItem: {
+                  editorOptions: { value: false },
+                },
+              },
+             
                 {
                   "dataField": "mdsEid"
                 },
@@ -326,13 +326,16 @@ cap.methods = {
                 {
                   "dataField": "WEX",
                   formItem: {
-                    editorOptions: { value: true },
+                    editorOptions: {
+                      checked: { value: true },
+                      unchecked: { value: false},
                   }
-                },
+                }
+              },
                 {
                   "dataField": "MDS",
                   formItem: {
-                    editorOptions: { value: true },
+                    editorOptions: { value: false },
                   }
                 },
               ]
