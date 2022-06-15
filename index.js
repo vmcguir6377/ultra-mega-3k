@@ -98,7 +98,7 @@ cap.methods = {
                 filterRow: {
                   visible: true
                 },
-              
+                
                 function() {
                   $("#emailButton").dxButton({
                     icon: "email",
@@ -165,44 +165,8 @@ cap.methods = {
                 },
               }),
 
-              /*function() {
-                $("#checked").dxCheckBox({
-                  value: true,
-                });
-              
-                $('#unchecked').dxCheckBox({
-                  value: false,
-                });
-              
-                $('#indeterminate').dxCheckBox({
-                  value: null,
-                });
-              
-                $('#handler').dxCheckBox({
-                  value: null,
-                  onValueChanged(data) {
-                    disabledCheckbox.option('value', data.value);
-                  },
-                });
-              
-                const disabledCheckbox = $('#disabled').dxCheckBox({
-                  value: null,
-                  disabled: true,
-                }).dxCheckBox('instance')
-              },*/
                 columns: [
                 {
-                  /*"type": "buttons",
-                  "width": 110,
-                  "buttons": [
-
-                    "edit", {
-                      hint: 'Delete',
-                      icon: 'delete',
-                    },
-                   
-                  ],*/
-
                   "dataField": "inx",
                   visible: true,
                   formItem: {
@@ -455,25 +419,11 @@ cap.methods = {
       $.get(`${_APIURL}${endpoint}`)
         .then((res) => { resolve(res) })
         .catch((err) => { reject(err) })
-        sendEmail;
+      
     });
   }
 }
  
-function sendEmail() {
-  Email.send({
-    Host: "mail.unitedlocating.net",
-    Username: "contactmanager@unitedlocating.net",
-    Password: "P@ssw0rd381047@!",
-    To: 'vmcguire@unitedlocating.com',
-    From: "sender@email_address.com",
-    Subject: "Sending Email using javascript",
-    Body: "Well that was easy!!",
-  })
-    .then(function (message) {
-      alert("mail sent successfully")
-    });
-}
 cap.events = {
 
 

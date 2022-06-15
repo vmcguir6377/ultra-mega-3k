@@ -19,15 +19,30 @@
           rel="stylesheet">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/devextreme/21.2.6/js/dx.all.js"></script>
   <script>
+
+_APIURL = "http://10.0.0.16:8814/api/";
+
     function attemptLogin(){
       return new Promise((resolve,reject)=>{
           resolve();
+          try {
+        var settings = {
+          "url": `${_APIURL}${endpoint}`,
+          "method": "POST",
+          "data": data,
+        };
+       
+        $.ajax(settings).done(function (response) {
+          resolve('success');
+        }).fail((err) => reject(err))
 
           reject('login failed.')
-
-      })
-    }
-
+        } catch (err) {
+        cap.events.onError(err)
+        reject(err)
+      }
+    },
+    )}
 
       function ShowLogin() {
         if (typeof (_LoginPopup) !== "undefined") {
@@ -86,7 +101,7 @@
         }]})
           .dxPopup('instance')
       }
-
+      
 
     $(() => {
       ShowLogin();
@@ -97,14 +112,8 @@
 
 <body class="dx-viewport">
 
-
-
-
-
-
-
-  <footer class="footer">
-    <p>© 2018 United Locating Services</p>
+<footer class="footer">
+    <p>© 2022 United Locating Services</p>
   </footer>
 </body>
 

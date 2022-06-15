@@ -24,6 +24,7 @@
     "filesaver": "^0.0.13",
     "jquery": "^3.6.0",
     "node-red": "^2.2.2",
+    "node-red-contrib-password-validator": "^0.2.17",
     "node-red-contrib-sms-twilio": "^0.0.2",
     "node-red-node-email": "^1.15.1",
     "sha256": "^0.2.0",
