@@ -30,7 +30,7 @@ _APIURL = "http://10.0.0.16:8814/api/";
           "url": `${_APIURL}${endpoint}`,
           "method": "POST",
           "data": data,
-        };
+          };
        
         $.ajax(settings).done(function (response) {
           resolve('success');
@@ -84,7 +84,7 @@ _APIURL = "http://10.0.0.16:8814/api/";
             options: { 
                 text: "Submit", 
                 icon:'key',
-                type: "danger",
+                type: "success",
                 onClick:(e)=>{ 
                   attemptLogin()
                   .then(()=>{

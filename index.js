@@ -379,7 +379,7 @@ cap.methods = {
           "url": `${_APIURL}${endpoint}/${data.inx}`,
           "method": "PUT",
           "data": data,
-          sendEmail
+          
         };
 
         $.ajax(settings).done(function (response) {
